@@ -15,13 +15,13 @@
     <meta property="og:image" content="https://placehold.co/1200x630/0066CC/FFFFFF?text=BMW%20EVENT&font=exo2" /> 
     <meta property="og:url" content="https://meetyourmatch.event-bmw.vn" /> <!-- Bạn CẦN thay thế bằng domain của mình -->
     <meta name="twitter:card" content="summary_large_image" />
-	
-	<!-- favicons start -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" type="image/x-icon" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/favicon.ico">        <!-- favicons end -->
+    
+    <!-- favicons start -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/favicon.ico">        <!-- favicons end -->
 
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -216,13 +216,32 @@
             <!-- Welcome Section -->
             <div id="welcomeSection" class="section active">
                 <div class="text-center">
-                    <!-- (THAY ĐỔI) Icon xe hơi Font Awesome -->
-                    <div class="text-7xl mb-6 text-bmw-blue">
-                        <i class="fa-solid fa-car-side"></i>
+
+                    <!-- ===== (THAY ĐỔI) BẮT ĐẦU KHUNG VIDEO ===== -->
+                    <!-- (MỚI) KHUNG VIDEO YOUTUBE TỰ ĐỘNG PHÁT -->
+                    <div class="relative w-full aspect-w-16 aspect-h-9 mb-8 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto">
+                        <!-- 
+                          (QUAN TRỌNG) Thay 'E20-4Gg6I4M' ở HAI (2) chỗ bên dưới bằng ID video YouTube của bạn.
+                          Ví dụ: nếu link là https://www.youtube.com/watch?v=ABC123XYZ, ID là 'ABC123XYZ'
+                        -->
+                        <iframe 
+                            class="absolute w-full h-full" 
+                            src="https://www.youtube.com/embed/3WU-jzbkYd4?autoplay=1&mute=1&controls=0&loop=1&playlist=3WU-jzbkYd4&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        
+                        <!-- (MỚI) Lớp phủ trong suốt để ngăn click/pause -->
+                        <div class="absolute inset-0 w-full h-full bg-transparent"></div>
                     </div>
-                    <h2 class="text-3xl font-bold text-bmw-blue mb-4 font-heading">
-                        Chào mừng đến với MEET YOUR MATCH!
-                    </h2>
+                    <!-- ===== (THAY ĐỔI) HẾT KHUNG VIDEO ===== -->
+
+
+                    <!-- (ĐÃ XÓA) Icon xe hơi Font Awesome -->
+                    <!-- (ĐÃ XÓA) Tiêu đề "Chào mừng đến với MEET YOUR MATCH!" -->
+                    
                     <div class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
                         BMW là biểu tượng của sự hoàn hảo, kết hợp giữa công nghệ tiên tiến và thiết kế đẳng cấp. 
                         Nhưng mỗi cá nhân có một phong cách sống riêng, một cá tính độc đáo. 
@@ -475,7 +494,7 @@
                     <!-- THAY THẾ LINK YOUTUBE CỦA BẠN TẠI ĐÂY -->
                     <!-- Dùng 'embed' link, không phải link 'watch' -->
                     <iframe id="guide-video-iframe" class="w-full h-full" 
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            src="https://www.youtube-nocookie.com/embed/3WU-jzbkYd4" 
                             title="YouTube video player" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
