@@ -449,7 +449,7 @@
 
         // MỚI: Hàm gửi lệnh "unmute" qua Post Message
         function unmuteVideo() {
-            const iframe = $(YOUTUBE_IFRAME_ID);
+            const iframe = $('youtubeIframe');
             const unmuteBtn = $('unmuteBtn');
             const unmuteIcon = $('unmuteIcon');
 
@@ -486,7 +486,7 @@
             $('quizSection').classList.add('active');
             
             // MỚI: Tắt video và ẩn nút unmute khi chuyển sang trang Quiz
-            const iframe = $(YOUTUBE_IFRAME_ID);
+            const iframe = $('youtubeIframe');
             const unmuteBtn = $('unmuteBtn');
             if (iframe) {
                 iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', YOUTUBE_ORIGIN);
