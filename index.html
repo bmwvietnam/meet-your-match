@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,22 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEET YOUR MATCH – CHỌN MẪU BMW THỂ HIỆN CÁ TÍNH</title>
 
-        <meta property="og:title" content="MEET YOUR MATCH – CHỌN MẪU BMW THỂ HIỆN CÁ TÍNH" />
+    <!-- DYNAMIC OG META TAGS -->
+    <meta property="og:title" content="MEET YOUR MATCH – CHỌN MẪU BMW THỂ HIỆN CÁ TÍNH" />
     <meta property="og:description" content="Khám phá ngay mẫu BMW nào phù hợp nhất với bạn!" />
     <meta property="og:image" content="https://placehold.co/1200x630/0066CC/FFFFFF?text=BMW%20EVENT&font=exo2" /> 
     <meta property="og:url" content="https://meetyourmatch.event-bmw.vn" />
     <meta name="twitter:card" content="summary_large_image" />
     
-        <link rel="shortcut icon" type="image/x-icon" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/favicon.ico">
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/favicon.ico">
 
-        <script src="https://cdn.tailwindcss.com"></script>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
-        <script>
+    <!-- Cấu hình Tailwind -->
+    <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -41,7 +48,8 @@
         }
     </script>
 
-        <style>
+    <!-- Font Faces -->
+    <style>
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
@@ -63,7 +71,8 @@
         }
     </script>
 
-        <style>
+    <!-- CSS Custom -->
+    <style>
         .section { display: none; }
         .section.active { display: block; animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -85,51 +94,28 @@
         .form-input:focus, .form-select:focus { outline: none; border-color: #0066CC; background-color: #FFFFFF; box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.5); }
         .aspect-w-16 { position: relative; padding-bottom: 56.25%; }
         .aspect-w-16 > * { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        
-        /* Custom CSS for the Unmute Button */
-        #unmuteBtn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            z-index: 10;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-        #unmuteBtn:hover {
-            background-color: rgba(0, 102, 204, 0.7); /* bmw-blue with opacity */
-        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans font-light min-h-screen p-4 md:p-8 flex items-center justify-center">
     
     <div class="container max-w-3xl w-full mx-auto bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl shadow-2xl overflow-hidden">
         
-                <div class="header p-8 text-center border-b border-gray-200">
+        <!-- Header -->
+        <div class="header p-8 text-center border-b border-gray-200">
             <img src="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/logo.png" alt="Logo BMW" class="h-16 md:h-12 w-auto mx-auto mb-6" onerror="this.style.display='none'">
             <h1 class="text-2xl font-bold text-zinc-900 mb-2 font-heading uppercase tracking-wide">MEET YOUR MATCH</h1>
             <p class="text-lg text-gray-600">Chọn mẫu BMW thể hiện cá tính</p>
         </div>
 
         <div class="content p-6 md:p-10">
-                        <div id="welcomeSection" class="section active">
+            <!-- Welcome Section -->
+            <div id="welcomeSection" class="section active">
                 <div class="text-center">
                     <div class="relative w-full aspect-w-16 aspect-h-9 mb-8 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto">
-                                                <iframe id="youtubeIframe" class="absolute w-full h-full" src="https://www.youtube.com/embed/J8dfHHlFDrE?enablejsapi=1&autoplay=1&mute=1&controls=0&loop=1&playlist=J8dfHHlFDrE&playsinline=1&rel=0&modestbranding=1" title="YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="absolute w-full h-full" src="https://www.youtube.com/embed/J8dfHHlFDrE?autoplay=1&mute=1&controls=0&loop=1&playlist=J8dfHHlFDrE&playsinline=1&rel=0&modestbranding=1" title="YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div class="absolute inset-0 w-full h-full bg-transparent"></div>
-                        
-                                                
                     </div>
-                    <button id="unmuteBtn" onclick="unmuteVideo()">
-                            <i class="fa-solid fa-volume-mute mr-2" id="unmuteIcon"></i> Bật tiếng
-                        </button>
+                    
                     <div class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
                         BMW là biểu tượng của sự hoàn hảo, kết hợp giữa công nghệ tiên tiến và thiết kế đẳng cấp. 
                         Nhưng hoàn hảo nhất là chiếc xe thể hiện được phong cách sống riêng và cá tính độc đáo của bạn. 
@@ -151,7 +137,8 @@
                 </button>
             </div>
 
-                        <div id="quizSection" class="section">
+            <!-- Quiz Section -->
+            <div id="quizSection" class="section">
                 <div class="progress-bar bg-gray-200 h-2 rounded-full mb-8 overflow-hidden">
                     <div class="progress-fill bg-bmw-blue h-2 rounded-full transition-all duration-500" id="progressBar"></div>
                 </div>
@@ -166,7 +153,8 @@
                 </button>
             </div>
 
-                        <div id="resultSection" class="section">
+            <!-- Result Section -->
+            <div id="resultSection" class="section">
                 <div class="result-card bg-white border border-bmw-blue/30 p-6 md:p-8 rounded-xl text-center shadow-lg mb-8">
                     <div class="result-icon text-7xl mb-4 text-bmw-blue" id="resultIcon"></div>
                     <div class="result-title text-3xl font-bold text-zinc-900 mb-2 font-heading" id="resultTitle"></div>
@@ -174,10 +162,12 @@
                     <div class="result-desc text-lg text-gray-700 max-w-2xl mx-auto" id="resultDesc"></div>
                 </div>
 
-                                <div id="stats-container" class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8 hidden">
+                <!-- (MỚI) CHART SECTION -->
+                <div id="stats-container" class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8 hidden">
                     <h3 class="text-center text-xl font-bold text-zinc-900 mb-2 font-heading">Cộng đồng BMW</h3>
                     
-                                        <p id="comparison-text" class="text-center text-gray-600 mb-6">
+                    <!-- Tin nhắn so sánh -->
+                    <p id="comparison-text" class="text-center text-gray-600 mb-6">
                         Đang tải dữ liệu cộng đồng...
                     </p>
 
@@ -210,7 +200,8 @@
         </div>
     </div>
 
-        <div id="share-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-sm hidden opacity-0 font-sans">
+    <!-- Share Modal -->
+    <div id="share-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-sm hidden opacity-0 font-sans">
         <div id="share-modal-content" class="bg-white border border-gray-200 text-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
             <div class="p-6 md:p-10 relative">
                 <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors">
@@ -220,14 +211,16 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900 heading-font">Chia sẻ để nhận quà!</h2>
                 <p class="text-center text-gray-600 mb-8">Bạn có muốn đăng ký lái thử tại sự kiện để có cơ hội nhận quà?</p>
 
-                                <div id="drive-confirm-buttons" class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <!-- Giữ nguyên Logic cũ: Chọn Yes/No -->
+                <div id="drive-confirm-buttons" class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                     <button id="register-yes-btn" class="btn-modal-primary flex-1">
                         <i class="fa-solid fa-check inline-block w-5 h-5 mr-2"></i> Có, đăng ký ngay
                     </button>
                     <button id="register-no-btn" class="btn-modal-secondary flex-1">Không, chỉ chia sẻ</button>
                 </div>
 
-                                <form id="register-form" class="hidden space-y-4">
+                <!-- Form Đăng ký (Ẩn/Hiện theo logic cũ) -->
+                <form id="register-form" class="hidden space-y-4">
                     <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Hoàn tất đăng ký</h3>
                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Họ và tên *</label><input type="text" id="full-name" name="full-name" required class="form-input"></div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -243,7 +236,8 @@
                     </div>
                 </form>
 
-                                <div id="social-share-section" class="hidden">
+                <!-- Social Share Logic (Giữ nguyên cũ) -->
+                <div id="social-share-section" class="hidden">
                     <hr class="my-8 border-gray-200">
                     <p class="text-center font-semibold text-gray-700 mb-4">Bước 1: Sao chép nội dung để chia sẻ</p>
                     <button onclick="handleCopyLink()" class="btn-modal-secondary w-full flex items-center justify-center gap-2 py-3 mb-6 bg-gray-600 hover:bg-gray-700">
@@ -268,7 +262,8 @@
         </div>
     </div>
 
-        <div id="guide-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-sm hidden opacity-0 font-sans">
+    <!-- Guide Modal -->
+    <div id="guide-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-sm hidden opacity-0 font-sans">
         <div id="guide-modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 transition-all duration-300">
             <div class="p-4 relative">
                 <button id="close-guide-btn" class="absolute -top-3 -right-3 z-10 text-white bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-600 transition-colors"><i class="fa-solid fa-xmark"></i></button>
@@ -280,10 +275,6 @@
     </div>
 
     <script>
-        // MỚI: Cấu hình YouTube Player API
-        const YOUTUBE_IFRAME_ID = 'youtubeIframe';
-        const YOUTUBE_ORIGIN = 'https://www.youtube.com'; // Hoặc `https://www.youtube-nocookie.com` nếu sử dụng
-
         // --- CẤU HÌNH SCRIPT GOOGLE SHEET ---
         // QUAN TRỌNG: Hãy đảm bảo Deploy Web App ở chế độ "Who has access: Anyone"
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpcI8VVSDsIUw6TgFtaDXT77lfuEJEmhmo04R3mE8Uv5YSioI2HqrOmI4U-63P9pI11g/exec'; 
@@ -447,30 +438,6 @@
         let currentQuestion = 0, answers = [], customerName = "", state = { finalResultType: null, isFormVisible: false }, myChart = null;
         const $ = (id) => document.getElementById(id);
 
-        // MỚI: Hàm gửi lệnh "unmute" qua Post Message
-        function unmuteVideo() {
-            const iframe = $('youtubeIframe');
-            const unmuteBtn = $('unmuteBtn');
-            const unmuteIcon = $('unmuteIcon');
-
-            if (iframe) {
-                // Gửi lệnh unmute tới iframe
-                iframe.contentWindow.postMessage('{"event":"command","func":"unmute","args":""}', YOUTUBE_ORIGIN);
-                
-                // Cập nhật giao diện: ẩn nút và đổi icon
-                unmuteBtn.textContent = 'Đã bật tiếng';
-                unmuteBtn.disabled = true;
-                unmuteIcon.classList.remove('fa-volume-mute');
-                unmuteIcon.classList.add('fa-volume-high');
-                unmuteBtn.style.backgroundColor = 'rgba(39, 174, 96, 0.8)'; // Green for unmuted
-                
-                // Ẩn nút sau một khoảng thời gian (tùy chọn)
-                setTimeout(() => {
-                    unmuteBtn.style.display = 'none';
-                }, 3000);
-            }
-        }
-        
         function startQuiz() {
             customerName = $('customerName').value.trim();
             if (!customerName) {
@@ -484,17 +451,6 @@
             }
             $('welcomeSection').classList.remove('active');
             $('quizSection').classList.add('active');
-            
-            // MỚI: Tắt video và ẩn nút unmute khi chuyển sang trang Quiz
-            const iframe = $('youtubeIframe');
-            const unmuteBtn = $('unmuteBtn');
-            if (iframe) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', YOUTUBE_ORIGIN);
-            }
-            if (unmuteBtn) {
-                unmuteBtn.style.display = 'none';
-            }
-            
             renderQuestion(); updateProgress();
         }
 
@@ -553,10 +509,313 @@
                 const type = questions[i].options[a].type;
                 if (counts[type] !== undefined) counts[type]++;
             });
-            
-            // ... (Phần còn lại của showResult())
-// ... (Phần còn lại của showResult())
-    </script>
 
+            // 2. Tìm điểm cao nhất (Find Max Score)
+            let maxScore = 0;
+            Object.values(counts).forEach(c => {
+                if (c > maxScore) maxScore = c;
+            });
+
+            // 3. Áp dụng quy tắc ưu tiên (Apply Priority Rule)
+            // Quy tắc: Icon > Traveler > Visionary > Performer
+            const priorityOrder = ['Icon', 'Traveler', 'Visionary', 'Performer'];
+            
+            let finalType = null;
+
+            // Duyệt theo đúng thứ tự ưu tiên. 
+            // Loại nào gặp đầu tiên mà bằng điểm maxScore thì chọn ngay và DỪNG LẠI (break)
+            for (const type of priorityOrder) {
+                if (counts[type] === maxScore) {
+                    finalType = type;
+                    break; // QUAN TRỌNG: Dừng ngay lập tức khi tìm thấy loại ưu tiên
+                }
+            }
+            
+            // Fallback an toàn (dù rất khó xảy ra)
+            if (!finalType) finalType = 'Icon';
+
+            const result = carTypes[finalType];
+            state.finalResultType = result;
+
+            // --- HIỂN THỊ UI ---
+            $('quizSection').classList.remove('active');
+            $('resultSection').classList.add('active');
+            
+            $('resultIcon').innerHTML = result.icon;
+            $('resultTitle').textContent = `${customerName} là ${result.name}!`;
+            $('resultSubtitle').textContent = result.car;
+            $('resultDesc').textContent = result.description;
+
+            $('personalityTraits').innerHTML = result.traits.map(t => `
+                <div class="bg-white shadow-sm border border-gray-200 p-6 rounded-lg text-center hover:shadow-lg transition-all">
+                    <div class="text-4xl mb-3 text-bmw-blue">${t.icon}</div>
+                    <div class="text-lg font-semibold text-zinc-900">${t.name}</div>
+                    <div class="text-sm text-gray-600">${t.desc}</div>
+                </div>`).join('');
+
+            // Tìm đoạn này trong hàm showResult()
+            $('carDetails').innerHTML = result.features.map(f => `
+                <div class="flex flex-col items-start text-left py-3 border-b border-gray-200 last:border-b-0">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${f.label}</span>
+                    <span class="font-heading font-bold text-zinc-900 text-lg md:text-xl leading-tight">${f.value}</span>
+                </div>`).join('');
+
+            // 3. Lưu kết quả
+            saveGameResult(customerName, result.id);
+            loadGlobalStats(result.id);
+            
+            updateCarModelDropdown();
+            window.scrollTo(0, 0);
+        }
+
+        // --- FIX CORS: THAY ĐỔI HEADER THÀNH TEXT/PLAIN ---
+        function saveGameResult(name, resultId) {
+            fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                // QUAN TRỌNG: Sử dụng text/plain để tránh Preflight Check của trình duyệt
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({
+                    actionType: "GameResult",
+                    customerName: name,
+                    result: resultId
+                })
+            }).catch(console.error);
+        }
+
+        // --- HÀM VẼ BIỂU ĐỒ (GET REQUEST) ---
+        async function loadGlobalStats(myResultId) {
+            const statsContainer = $('stats-container');
+            const comparisonText = $('comparison-text');
+            statsContainer.classList.remove('hidden');
+            
+            try {
+                // QUAN TRỌNG: Thêm redirect: 'follow' để xử lý việc Google redirect 302
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+
+                if (!response.ok) throw new Error("Network response was not ok");
+                
+                const data = await response.json();
+                
+                if (!data.counts) throw new Error("No data");
+
+                const labels = ['Icon', 'Traveler', 'Visionary', 'Performer'];
+                const values = labels.map(l => data.counts[l] || 0);
+                
+                const myKey = myResultId.charAt(0).toUpperCase() + myResultId.slice(1);
+                const myCount = (data.counts[myKey] || 0); 
+                const total = data.total; 
+                
+                let myPercent = total > 0 ? Math.round((myCount / total) * 100) : 0;
+
+                comparisonText.innerHTML = `Có <strong class="text-bmw-blue text-2xl">${myPercent}%</strong> người tham gia cũng thuộc nhóm <strong>${myKey}</strong> giống bạn!`;
+
+                renderChart(labels, values, myKey);
+
+            } catch (e) {
+                console.error("Lỗi tải thống kê:", e);
+                comparisonText.textContent = "Bạn là người đầu tiên khám phá cá tính này hôm nay!";
+                renderChart(['Icon', 'Traveler', 'Visionary', 'Performer'], [1,1,1,1], myResultId);
+            }
+        }
+
+        function renderChart(labels, dataValues, highlightKey) {
+            const ctx = document.getElementById('personalityChart').getContext('2d');
+            const colors = ['#004484', '#e72b18', '#d7d7d7', '#006fb7']; // The Icon, The Traveler, The Visionary, The Performer
+            
+            if (myChart) myChart.destroy();
+
+            // 1. Vẽ biểu đồ (TẮT LEGEND MẶC ĐỊNH)
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: dataValues,
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            display: false // <--- QUAN TRỌNG: Tắt legend mặc định để không bị vỡ layout
+                        },
+                        tooltip: { 
+                            callbacks: { 
+                                label: function(context) {
+                                    let value = context.parsed || 0;
+                                    let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    let pct = total > 0 ? Math.round((value / total) * 100) : 0;
+                                    return ` ${context.label}: ${pct}%`;
+                                }
+                            }
+                        },
+                        datalabels: {
+                            color: '#ffffff',
+                            font: { weight: 'bold', size: 14, family: 'BMWTypeNext' },
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => { sum += data; });
+                                let percentage = sum > 0 ? (value * 100 / sum).toFixed(0) + "%" : "0%";
+                                return percentage;
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+
+            // 2. TẠO LEGEND TÙY CHỈNH (GRID 2x2)
+            const legendContainer = document.getElementById('js-legend');
+            legendContainer.innerHTML = labels.map((label, index) => {
+                return `
+                    <div class="flex items-center justify-left space-x-2">
+                        <span class="w-3 h-3 rounded-full flex-shrink-0" style="background-color: ${colors[index]}"></span>
+                        <span class="text-sm text-gray-600 font-medium truncate">The ${label}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- MODAL & FORM SUBMIT ---
+        function updateCarModelDropdown() {
+            const select = $('car-model'); select.innerHTML = '';
+            ALL_CAR_MODELS.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; select.appendChild(o); });
+        }
+
+        function toggleRegisterForm(show) {
+            state.isFormVisible = show;
+            
+            // Ẩn nút chọn Yes/No
+            $('drive-confirm-buttons').classList.add('hidden');
+            
+            // Hiện khu vực Social Share
+            $('social-share-section').classList.remove('hidden');
+            
+            // --- THAY ĐỔI Ở ĐÂY: Luôn hiện ô dự đoán cho cả 2 trường hợp ---
+            $('prediction-step-container').classList.remove('hidden'); 
+
+            if(show) { 
+                // Nếu chọn Đăng ký (Yes) -> Hiện form thông tin cá nhân
+                $('register-form').classList.remove('hidden'); 
+                
+                // Tự động điền tên (Logic từ bước trước)
+                $('full-name').value = customerName; 
+            } else { 
+                // Nếu chọn Không (No) -> Ẩn form thông tin cá nhân
+                $('register-form').classList.add('hidden'); 
+                
+                // (Lưu ý: Không còn dòng lệnh ẩn prediction-step-container ở đây nữa)
+            }
+        }
+
+        function handleCopyLink() {
+            const text = `${state.finalResultType.shareText} #ThacoAuto #BMWVietnam\n${window.location.href}`;
+            navigator.clipboard.writeText(text).then(() => {
+                $('form-status').textContent = '✅ Đã copy hashtags & link!';
+                $('form-status').className = 'text-center text-sm mt-4 text-green-500';
+            }).catch(() => alert("Copy thủ công: " + text));
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            // 1. Validate Link chia sẻ (Chung cho tất cả)
+            const shareLink = $('share-link').value;
+            if (!shareLink) { alert("Vui lòng nhập link chia sẻ!"); return; }
+
+            // 2. Validate Số dự đoán (THAY ĐỔI: Bây giờ là bắt buộc cho TẤT CẢ)
+            const prediction = $('prediction-count').value;
+            if(!prediction) { alert("Vui lòng nhập con số dự đoán!"); return; }
+
+            // 3. Khởi tạo dữ liệu gửi đi
+            let formData = {
+                actionType: "Registration",
+                customerName: customerName,
+                result: state.finalResultType.id,
+                "share-link": shareLink,
+                "prediction-count": prediction, // Luôn có dữ liệu dự đoán
+                is_registered: state.isFormVisible ? "Yes" : "No"
+            };
+
+            // 4. Chỉ Validate & Lấy thông tin cá nhân NẾU đăng ký lái thử
+            if (state.isFormVisible) {
+                const regForm = $('register-form');
+                // Kiểm tra form HTML5 (required, email format...)
+                if (!regForm.checkValidity()) { regForm.reportValidity(); return; }
+                
+                formData["full-name"] = $('full-name').value;
+                formData.phone = $('phone').value;
+                formData.email = $('email').value;
+                formData["car-model"] = $('car-model').value;
+            }
+
+            // 5. Gửi dữ liệu (Giữ nguyên code cũ)
+            $('loading-spinner').classList.remove('hidden');
+            $('complete-btn').disabled = true;
+            $('form-status').textContent = 'Đang gửi thông tin...';
+            $('form-status').className = 'text-center text-sm mt-4 text-gray-500';
+
+            try {
+                await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(formData)
+                });
+
+                $('form-status').textContent = '✅ Hoàn thành! Cảm ơn bạn đã tham gia.';
+                $('form-status').className = 'text-center text-sm mt-4 text-green-500';
+                setTimeout(() => closeModal(), 3000);
+
+            } catch (error) {
+                console.error('Lỗi:', error);
+                $('form-status').textContent = 'Có lỗi xảy ra. Vui lòng thử lại.';
+                $('form-status').className = 'text-center text-sm mt-4 text-red-500';
+            } finally {
+                $('loading-spinner').classList.add('hidden');
+                $('complete-btn').disabled = false;
+            }
+        }
+
+        // Event Listeners
+        $('open-share-modal-btn').onclick = () => { 
+            $('share-modal').classList.remove('hidden'); 
+            setTimeout(() => { $('share-modal').classList.add('opacity-100'); $('share-modal-content').classList.add('scale-100'); }, 10); 
+            $('drive-confirm-buttons').classList.remove('hidden');
+            $('social-share-section').classList.add('hidden');
+            $('register-form').classList.add('hidden');
+            state.isFormVisible = false;
+            $('form-status').textContent = '';
+        };
+        $('close-modal-btn').onclick = closeModal;
+        function closeModal() { 
+            $('share-modal').classList.remove('opacity-100'); 
+            $('share-modal-content').classList.remove('scale-100'); 
+            setTimeout(() => $('share-modal').classList.add('hidden'), 300); 
+        }
+
+        $('register-yes-btn').onclick = () => toggleRegisterForm(true);
+        $('register-no-btn').onclick = () => toggleRegisterForm(false);
+        $('complete-btn').onclick = handleSubmit;
+        
+        $('open-guide-btn').onclick = () => { $('guide-modal').classList.remove('hidden'); setTimeout(() => $('guide-modal').classList.add('opacity-100'), 10); };
+        $('close-guide-btn').onclick = () => { $('guide-modal').classList.remove('opacity-100'); setTimeout(() => $('guide-modal').classList.add('hidden'), 300); };
+
+        function restartQuiz() {
+            currentQuestion = 0; answers = []; customerName = ""; state.finalResultType = null;
+            $('resultSection').classList.remove('active'); $('welcomeSection').classList.add('active');
+            $('customerName').value = ''; $('nextBtn').disabled = true; $('nextBtn').textContent = 'Tiếp theo';
+        }
+    </script>
 </body>
 </html>
