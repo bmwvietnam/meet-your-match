@@ -51,7 +51,7 @@
     <style>
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Regular.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
     </style>
 
     <script>
@@ -124,18 +124,18 @@
     <div class="container max-w-3xl w-full mx-auto bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl shadow-2xl overflow-hidden">
         
         <!-- Header -->
-        <div class="header p-8 text-center border-b border-gray-200">
+        <div class="header p-4 text-center border-b border-gray-200">
             <img src="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/logo.png" alt="Logo BMW" class="h-16 md:h-12 w-auto mx-auto mb-6" onerror="this.style.display='none'">
-            <h1 class="text-2xl font-bold text-zinc-900 mb-2 font-heading uppercase tracking-wide">MEET YOUR MATCH</h1>
+            <h1 class="text-2xl font-bold text-zinc-900 mb-0 font-heading uppercase tracking-wide">MEET YOUR MATCH</h1>
             <p class="text-lg text-gray-600">Chọn mẫu BMW thể hiện cá tính</p>
         </div>
 
-        <div class="content p-6 md:p-10">
+        <div class="content p-4 md:p-10">
             <!-- Welcome Section -->
             <div id="welcomeSection" class="section active">
                 <div class="text-center">
                     <!-- VIDEO MP4 REPLACEMENT START -->
-                    <div class="relative w-full aspect-w-16 aspect-h-9 mb-8 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto bg-black">
+                    <div class="relative w-full aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto bg-black">
                         <video id="introVideo" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
                             <source src="https://www.bmw-motorcycles.vn/content/dam/bmwmotorradnsc/marketVN_IMPORTER/common/videos/meet-your-match/bmwmeetyourmatch.mp4" type="video/mp4">
                             Trình duyệt của bạn không hỗ trợ thẻ video.
@@ -147,7 +147,7 @@
                     </div>
                     <!-- VIDEO MP4 REPLACEMENT END -->
                     
-                    <div class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                    <div class="text-sm text-gray-700 mb-6 max-w-2xl mx-auto">
                         BMW là biểu tượng của sự hoàn hảo, kết hợp giữa công nghệ tiên tiến và thiết kế đẳng cấp. 
                         Nhưng hoàn hảo nhất là chiếc xe thể hiện được phong cách sống riêng và cá tính độc đáo của bạn. 
                         <br><br>
@@ -189,8 +189,8 @@
                 <div class="result-card bg-white border border-bmw-blue/30 p-6 md:p-8 rounded-xl text-center shadow-lg mb-8">
                     <div class="result-icon text-7xl mb-4 text-bmw-blue" id="resultIcon"></div>
                     <div class="result-title text-3xl font-bold text-zinc-900 mb-2 font-heading" id="resultTitle"></div>
-                    <div class="result-subtitle text-xl text-bmw-blue mb-4 font-heading" id="resultSubtitle"></div>
-                    <div class="result-desc text-lg text-gray-700 max-w-2xl mx-auto" id="resultDesc"></div>
+                    <div class="result-subtitle text-base text-bmw-blue mb-4 font-heading" id="resultSubtitle"></div>
+                    <div class="result-desc text-sm text-gray-700 max-w-2xl mx-auto" id="resultDesc"></div>
                 </div>
 
                 <!-- (MỚI) CHART SECTION -->
@@ -209,19 +209,19 @@
                     </div>
                 </div>
 
-                <div class="personality-traits grid grid-cols-1 md:grid-cols-3 gap-4 my-8" id="personalityTraits"></div>
+                <div class="personality-traits grid grid-cols-1 md:grid-cols-3 gap-4 my-8 hidden" id="personalityTraits"></div>
 
-                <div class="car-details bg-gray-50 rounded-lg border border-gray-200 p-6 mb-8">
+                <div class="car-details bg-gray-50 rounded-lg border border-gray-200 p-6 mb-8 hidden">
                     <h3 class="text-xl font-bold text-zinc-900 mb-6 font-heading">Chi tiết dòng xe của bạn</h3>
                     <div id="carDetails"></div>
                 </div>
 
                 <div class="text-center my-8">
-                    <p class="text-xl font-semibold text-zinc-900 mb-4">🎁 Chia sẻ kết quả và tham gia sự kiện lái thử!</p>
+                    <p class="text-xl font-semibold text-zinc-900 mb-4">🎁 Chia sẻ kết quả để có cơ hội nhận quà tặng đặc biệt từ BMW</p>
                 </div>
 
                 <button id="open-share-modal-btn" class="btn w-full p-4 bg-bmw-blue hover:bg-bmw-light text-white font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-share-nodes w-5 h-5"></i> Chia sẻ & Đăng ký lái thử
+                    <i class="fa-solid fa-share-nodes w-5 h-5"></i> Chia sẻ ngay
                 </button>
 
                 <button class="btn btn-secondary w-full p-4 mt-4 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2" onclick="restartQuiz()">
@@ -239,20 +239,20 @@
                     <i class="fa-solid fa-xmark w-8 h-8"></i>
                 </button>
 
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900 heading-font">Chia sẻ để nhận quà!</h2>
-                <p class="text-center text-gray-600 mb-8">Bạn có muốn đăng ký lái thử tại sự kiện để có cơ hội nhận quà?</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900 heading-font">MEET YOUR MATCH</h2>
+                <p class="text-center text-gray-600 mb-8">Bạn có muốn trải nghiệm trực tiếp mẫu xe yêu thích trong sự kiện<br>BMW MEET & DRIVE<br>ngày 06-07/12/2025 tại Hà Nội?</p>
 
                 <!-- Giữ nguyên Logic cũ: Chọn Yes/No -->
                 <div id="drive-confirm-buttons" class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                     <button id="register-yes-btn" class="btn-modal-primary flex-1">
-                        <i class="fa-solid fa-check inline-block w-5 h-5 mr-2"></i> Có, đăng ký ngay
+                        <i class="fa-solid fa-check inline-block w-5 h-5 mr-2"></i> Có, chia sẻ & đăng ký
                     </button>
                     <button id="register-no-btn" class="btn-modal-secondary flex-1">Không, chỉ chia sẻ</button>
                 </div>
 
                 <!-- Form Đăng ký (Ẩn/Hiện theo logic cũ) -->
                 <form id="register-form" class="hidden space-y-4">
-                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Hoàn tất đăng ký</h3>
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Đăng ký lái thử</h3>
                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Họ và tên *</label><input type="text" id="full-name" name="full-name" required class="form-input"></div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div><label class="block text-sm font-medium text-gray-700 mb-1">Email *</label><input type="email" id="email" name="email" required class="form-input"></div>
@@ -263,31 +263,32 @@
                         <select id="car-model" name="car-model" class="form-select appearance-none"><option value="">Đang tải...</option></select>
                     </div>
                     <div class="flex items-center">
-                        <label class="flex items-center text-sm text-gray-700"><input type="checkbox" required class="mr-2 h-4 w-4 text-bmw-blue"> Tôi xác nhận có bằng lái xe ô tô (B1 trở lên)</label>
+                        <label class="flex items-top text-sm text-gray-700"><input type="checkbox" required class="mr-2 h-4 w-4 text-bmw-blue"> Tôi xác nhận đã có bằng lái xe trên 1 năm từ hạng B trở lên</label>
                     </div>
                 </form>
 
                 <!-- Social Share Logic (Giữ nguyên cũ) -->
                 <div id="social-share-section" class="hidden">
                     <hr class="my-8 border-gray-200">
-                    <p class="text-center font-semibold text-gray-700 mb-4">Bước 1: Sao chép nội dung để chia sẻ</p>
-                    <button onclick="handleCopyLink()" class="btn-modal-secondary w-full flex items-center justify-center gap-2 py-3 mb-6 bg-gray-600 hover:bg-gray-700">
-                        <i class="fa-solid fa-copy"></i> Copy nội dung & Link
+                    <p class="text-center font-semibold text-gray-700 mb-4">Bước 1: Sao chép nội dung bài viết và chia sẻ trên trang Facebook cá nhân ở chế độ công khai</p>
+                    <button onclick="handleCopyLink()" class="btn-modal-secondary w-full flex items-center justify-center gap-2 py-3 mb-4 bg-gray-600 hover:bg-gray-700">
+                        <i class="fa-solid fa-copy"></i> Sao chép nội dung
                     </button>
-                    <div class="text-center mb-6">
+					<p id="form-status" class="text-center text-sm mt-4 text-gray-500"></p>
+                    <div class="text-center mt-4 mb-4">
                         <button id="open-guide-btn" class="text-sm text-bmw-blue hover:text-bmw-light font-semibold transition-colors"><i class="fa-regular fa-circle-question mr-1"></i> Xem hướng dẫn</button>
                     </div>
 
-                    <p class="text-center font-semibold text-gray-700 mb-4 mt-8">Bước 2: Dán link bài đã chia sẻ</p>
+                    <p class="text-center font-semibold text-gray-700 mb-4 mt-8">Bước 2: Dán link bài viết bạn đã chia sẻ</p>
                     <input type="url" id="share-link" placeholder="https://facebook.com/your-post-link" class="form-input mb-6">
 
                     <div id="prediction-step-container" class="hidden">
-                        <p class="text-center font-semibold text-gray-700 mb-4">Bước 3: Dự đoán số người tham gia</p>
-                        <input type="number" id="prediction-count" placeholder="Nhập con số dự đoán" class="form-input text-center text-lg font-bold text-bmw-blue">
+                        <p class="text-center font-semibold text-gray-700 mb-4">Bước 3: Dự đoán số người cùng tham gia minigame với bạn</p>
+                        <input type="number" id="prediction-count" placeholder="Nhập số dự đoán của bạn" class="form-input text-center text-lg font-bold text-bmw-blue">
                     </div>
 
                     <button id="complete-btn" class="btn-modal-primary w-full mt-8 text-lg">Hoàn thành <span id="loading-spinner" class="loader ml-2 hidden"></span></button>
-                    <p id="form-status" class="text-center text-sm mt-4 text-gray-500"></p>
+                    
                 </div>
             </div>
         </div>
@@ -396,9 +397,9 @@
             Traveler: {
                 icon: '<i class="fa-solid fa-mountain-sun"></i>', // Đã thay đổi
                 name: "THE TRAVELER",
-                car: "BMW X Series - X3, X4, X5, X6",
+                car: "BMW X Series – The X3, The X4, The X5, The X6",
                 slogan: "Gia đình - Trải nghiệm - Drive every road",
-                description: "Bạn là người yêu tự do, khám phá và trải nghiệm. BMW X Series với không gian rộng rãi, công nghệ an toàn và khả năng vận hành đa địa hình là người bạn đồng hành hoàn hảo cho mọi hành trình.",
+                description: 'The Traveler là những người làm chủ cuộc hành trình, mang tinh thần tự do, bản lĩnh và không ngại thách thức trên những cung đường mới. Họ tin rằng, những câu chuyện đáng giá nhất luôn nằm ngoài giới hạn của bản đồ. Với The Traveler, thế giới là một sân chơi, và họ định nghĩa lại "khám phá" theo cách của riêng mình. \n\nSự hiện diện của BMW X Series được đánh dấu bằng sức mạnh vượt trội, công nghệ dẫn động thông minh xDrive, cùng thiết kế nội thất sang trọng, rộng rãi. Các mẫu xe X Series được chế tạo để chinh phục mọi địa hình, mang đến sự an toàn và thoải mái tối đa trên mọi hành trình, dù là đô thị hay xa lộ.',
                 traits: [
                     { icon: '<i class="fa-solid fa-earth-americas"></i>', name: "Khám phá", desc: "Luôn sẵn sàng cho chuyến đi mới" }, // Đã thay đổi
                     { icon: '<i class="fa-solid fa-users-line"></i>', name: "Gia đình", desc: "Ưu tiên sự thoải mái và an toàn" }, // Đã thay đổi
@@ -413,14 +414,14 @@
                 id: "traveler",
                 carsList: ["BMW X3", "BMW X5", "BMW X7"],
                 ogImage: "https://placehold.co/1200x630/3498DB/FFFFFF?text=THE%20TRAVELER&font=exo2",
-                shareText: "Tôi là The Traveler! Sẵn sàng cho mọi trải nghiệm cùng gia đình. Còn bạn? #BMW #MeetYourMatch #TheTraveler"
+                shareText: 'The Traveler là những người làm chủ cuộc hành trình, mang tinh thần tự do, bản lĩnh và không ngại thách thức trên những cung đường mới. Họ tin rằng, những câu chuyện đáng giá nhất luôn nằm ngoài giới hạn của bản đồ. Với The Traveler, thế giới là một sân chơi, và họ định nghĩa lại "khám phá" theo cách của riêng mình. \n\nSự hiện diện của BMW X Series được đánh dấu bằng sức mạnh vượt trội, công nghệ dẫn động thông minh xDrive, cùng thiết kế nội thất sang trọng, rộng rãi. Các mẫu xe X Series được chế tạo để chinh phục mọi địa hình, mang đến sự an toàn và thoải mái tối đa trên mọi hành trình, dù là đô thị hay xa lộ. \n\nI am The Traveler – Người kiến tạo những hành trình không giới hạn. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/thetraveler \n\n#BMWVietnam #MeetYourMatch #TheTraveler #TheX3 #TheX4 #TheX5 #TheX6 #SheerDrivingPleasure'
             },
             Visionary: {
                 icon: '<i class="fa-solid fa-microchip"></i>', // Đã thay đổi
                 name: "THE VISIONARY",
-                car: "BMW i Series - i4, i7, iX",
+                car: "BMW i Series – The iX3, The i4, The i7",
                 slogan: "Công nghệ - Tương lai - Drive the future",
-                description: "Bạn là người tiên phong, luôn đón nhận công nghệ mới và hướng đến tương lai bền vững. BMW i Series với động cơ điện hoàn toàn, công nghệ AI và thiết kế tương lai là sự lựa chọn hoàn hảo.",
+                description: "The Visionary không chỉ theo kịp xu hướng, họ là người tạo ra chúng. Với tầm nhìn đột phá, họ luôn nhìn thấy và đầu tư vào một tương lai thông minh, bền vững và khác biệt. Sự lựa chọn của Visionary là một cam kết với sự tiến hóa của phong cách sống cao cấp, lấy công nghệ làm kim chỉ nam. \n\nBMW i Series đại diện cho sự giao thoa hoàn hảo giữa thiết kế tiên phong, công nghệ điện hóa đỉnh cao và khả năng di chuyển bền vững. Với buồng lái kỹ thuật số tiên tiến, hệ thống truyền động không phát thải và vật liệu nội thất được tái chế, i Series định hình lại chuẩn mực của phương tiện hạng sang trong kỷ nguyên mới.",
                 traits: [
                     { icon: '<i class="fa-solid fa-rocket"></i>', name: "Tiên phong", desc: "Dẫn đầu xu hướng công nghệ" }, // Đã thay đổi
                     { icon: '<i class="fa-solid fa-leaf"></i>', name: "Bền vững", desc: "Quan tâm môi trường" }, // Đã thay đổi
@@ -435,14 +436,14 @@
                 id: "visionary",
                 carsList: ["BMW i4", "BMW i7", "BMW iX"],
                 ogImage: "https://placehold.co/1200x630/9B59B6/FFFFFF?text=THE%20VISIONARY&font=exo2",
-                shareText: "Tôi là The Visionary! Luôn hướng tới công nghệ và tương lai. Còn bạn? #BMW #MeetYourMatch #TheVisionary"
+                shareText: "The Visionary không chỉ theo kịp xu hướng, họ là người tạo ra chúng. Với tầm nhìn đột phá, họ luôn nhìn thấy và đầu tư vào một tương lai thông minh, bền vững và khác biệt. Sự lựa chọn của Visionary là một cam kết với sự tiến hóa của phong cách sống cao cấp, lấy công nghệ làm kim chỉ nam. \n\nBMW i Series đại diện cho sự giao thoa hoàn hảo giữa thiết kế tiên phong, công nghệ điện hóa đỉnh cao và khả năng di chuyển bền vững. Với buồng lái kỹ thuật số tiên tiến, hệ thống truyền động không phát thải và vật liệu nội thất được tái chế, i Series định hình lại chuẩn mực của phương tiện hạng sang trong kỷ nguyên mới. \n\nI am The Visionary – Người tiên phong định hình kỷ nguyên mới. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/thevisionary \n\n#BMWVietnam #MeetYourMatch #TheVisionary #TheiX3 #Thei4 #Thei7 #SheerDrivingPleasure"
             },
             Performer: {
                 icon: '<i class="fa-solid fa-flag-checkered"></i>', // Đã thay đổi
                 name: "THE PERFORMER",
-                car: "BMW M Series - M3, M4, M5",
+                car: "BMW M Series – The M3, The M4",
                 slogan: "Tốc độ - Thách thức - Drive the performance",
-                description: "Bạn là người đam mê tốc độ, yêu thích cảm giác mạnh và luôn muốn chinh phục thử thách. BMW M Series với hiệu năng vượt trội, động cơ mạnh mẽ và công nghệ đua là lựa chọn dành cho bạn.",
+                description: "Đam mê của The Performer là Sheer Driving Pleasure. Họ sống vì cảm giác tốc độ thuần túy, sự chính xác tuyệt đối, và khả năng làm chủ mọi giới hạn. Với The Performer, mỗi khoảnh khắc sau tay lái là một thử thách cần phải vượt qua, một màn trình diễn của tinh hoa kỹ thuật. \n\nBMW M Series được chế tạo bằng các vật liệu và công nghệ tinh chỉnh từ đường đua. Từ sức mạnh của động cơ hiệu suất cao đến hệ thống khung gầm được thiết kế để truyền tải trọn vẹn cảm xúc lái, mỗi chiếc M Series là một cỗ máy hiệu năng bùng nổ.",
                 traits: [
                     { icon: '<i class="fa-solid fa-bolt-lightning"></i>', name: "Mạnh mẽ", desc: "Động cơ hiệu suất cao" }, // Đã thay đổi
                     { icon: '<i class="fa-solid fa-bullseye"></i>', name: "Quyết đoán", desc: "Luôn dẫn đầu" }, // Đã thay đổi
@@ -457,14 +458,14 @@
                 id: "performer",
                 carsList: ["BMW M3", "BMW M4", "BMW M5"],
                 ogImage: "https://placehold.co/1200x630/E74C3C/FFFFFF?text=THE%20PERFORMER&font=exo2",
-                shareText: "Tôi là The Performer! Sinh ra để chinh phục tốc độ và đam mê. Còn bạn? #BMW #MeetYourMatch #ThePerformer"
+                shareText: "Đam mê của The Performer là Sheer Driving Pleasure. Họ sống vì cảm giác tốc độ thuần túy, sự chính xác tuyệt đối, và khả năng làm chủ mọi giới hạn. Với The Performer, mỗi khoảnh khắc sau tay lái là một thử thách cần phải vượt qua, một màn trình diễn của tinh hoa kỹ thuật. \n\nBMW M Series được chế tạo bằng các vật liệu và công nghệ tinh chỉnh từ đường đua. Từ sức mạnh của động cơ hiệu suất cao đến hệ thống khung gầm được thiết kế để truyền tải trọn vẹn cảm xúc lái, mỗi chiếc M Series là một cỗ máy hiệu năng bùng nổ. \n\nI am The Performer – Người tìm kiếm những giới hạn mới. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/theperformer \n\n#BMWVietnam #MeetYourMatch #ThePerformer #TheM3 #TheM4 #BMWMPerformance #UltimateDrivingMachine #SheerDrivingPleasure"
             },
             Icon: {
                 icon: '<i class="fa-solid fa-gem"></i>', // Đã thay đổi
                 name: "THE ICON",
-                car: "BMW 3 Series / 5 Series / 7 Series",
+                car: "BMW Series – The 3, The 5",
                 slogan: "Lịch lãm - Khẳng định BMW - Meet the legacy",
-                description: "Bạn là người trọng phong cách, đẳng cấp và sự hoàn hảo trong từng chi tiết. BMW Series cổ điển với thiết kế thanh lịch, công nghệ tinh tế là biểu tượng của sự thành công.",
+                description: "The Icon là hiện thân của sự tinh tế, đẳng cấp không cần phô trương, và vị thế được khẳng định qua những thành tựu. Thành công của họ được xây dựng dựa trên sự cân bằng giữa hiệu suất công việc và sự tận hưởng cuộc sống. The Icon không theo đuổi xu hướng, họ là chuẩn mực, là di sản mà người khác hướng tới. \n\nBMW 3 Series và 5 Series là những mẫu xe khởi đầu đam mê Sheer Driving Pleasure của nhiều thế hệ, được biết đến với khả năng lái năng động đặc trưng và sự cân bằng hoàn hảo giữa tính thể thao và tiện nghi cao cấp. Thiết kế thanh lịch, cùng công nghệ tiên tiến, đã định vị 3 Series và 5 Series là biểu tượng của thế hệ sedan hiện đại, kế thừa một di sản vĩ đại.",
                 traits: [
                     { icon: '<i class="fa-solid fa-user-tie"></i>', name: "Thanh lịch", desc: "Phong cách chuyên nghiệp" }, // Đã thay đổi
                     { icon: '<i class="fa-solid fa-star"></i>', name: "Đẳng cấp", desc: "Luôn hoàn hảo trong mọi chi tiết" }, // Đã thay đổi
@@ -479,11 +480,11 @@
                 id: "icon",
                 carsList: ["BMW 3 Series", "BMW 5 Series", "BMW 7 Series"],
                 ogImage: "https://placehold.co/1200x630/0066CC/FFFFFF?text=THE%20ICON&font=exo2",
-                shareText: "Tôi là The Icon! Một di sản của sự linh hoạt và đẳng cấp. Còn bạn? #BMW #MeetYourMatch #TheIcon"
+                shareText: "The Icon là hiện thân của sự tinh tế, đẳng cấp không cần phô trương, và vị thế được khẳng định qua những thành tựu. Thành công của họ được xây dựng dựa trên sự cân bằng giữa hiệu suất công việc và sự tận hưởng cuộc sống. The Icon không theo đuổi xu hướng, họ là chuẩn mực, là di sản mà người khác hướng tới.\n\nBMW 3 Series và 5 Series là những mẫu xe khởi đầu đam mê Sheer Driving Pleasure của nhiều thế hệ, được biết đến với khả năng lái năng động đặc trưng và sự cân bằng hoàn hảo giữa tính thể thao và tiện nghi cao cấp. Thiết kế thanh lịch, cùng công nghệ tiên tiến, đã định vị 3 Series và 5 Series là biểu tượng của thế hệ sedan hiện đại, kế thừa một di sản vĩ đại.\n\nI am The Icon – Người tiếp nối di sản, tạo nên huyền thoại. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/theicon \n\n#BMWVietnam #MeetYourMatch #TheIcon #The3 #The5 #SheerDrivingPleasure"
             }
         };
 
-        const ALL_CAR_MODELS = ["BMW 3 Series", "BMW 5 Series", "BMW 7 Series", "BMW X3", "BMW X5", "BMW X7", "BMW i4", "BMW i7", "BMW iX", "BMW M3", "BMW M4", "BMW M5"];
+        const ALL_CAR_MODELS = ["BMW 3 Series", "BMW 4 Series", "BMW 5 Series", "BMW 7 Series", "BMW X3", "BMW X4", "BMW X5", "BMW X6", "BMW X7", "BMW i4"];
         let currentQuestion = 0, answers = [], customerName = "", state = { finalResultType: null, isFormVisible: false }, myChart = null;
         const $ = (id) => document.getElementById(id);
 
@@ -514,12 +515,12 @@
             const q = questions[currentQuestion];
             $('questionsContainer').innerHTML = `
                 <div class="text-sm font-semibold text-bmw-blue mb-2">Câu ${currentQuestion + 1} / ${questions.length}</div>
-                <div class="text-2xl font-bold text-zinc-900 mb-8 font-heading">${q.text}</div>
-                <div class="flex flex-col gap-4 mb-8">
+                <div class="text-base font-bold text-zinc-900 mb-4 font-heading">${q.text}</div>
+                <div class="flex flex-col gap-4 mb-4">
                     ${q.options.map((opt, i) => `
-                        <div class="option flex items-center p-5 bg-white rounded-lg border-2 border-gray-300 cursor-pointer hover:border-bmw-blue hover:bg-gray-50 transition-all" onclick="selectOption(${i}, this)">
+                        <div class="option flex items-center p-3 bg-white rounded-lg border-2 border-gray-300 cursor-pointer hover:border-bmw-blue hover:bg-gray-50 transition-all" onclick="selectOption(${i}, this)">
                             <div class="option-label w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">${String.fromCharCode(65 + i)}</div>
-                            <div class="ml-4 flex-1 text-lg text-zinc-900">${opt.text}</div>
+                            <div class="ml-4 flex-1 text-sm text-zinc-900">${opt.text}</div>
                         </div>`).join('')}
                 </div>`;
             if (answers[currentQuestion] !== undefined) selectOption(answers[currentQuestion], document.querySelectorAll('.option')[answers[currentQuestion]]);
@@ -667,7 +668,7 @@
                 
                 let myPercent = total > 0 ? Math.round((myCount / total) * 100) : 0;
 
-                comparisonText.innerHTML = `Có <strong class="text-bmw-blue text-2xl">${myPercent}%</strong> người tham gia cũng thuộc nhóm <strong>${myKey}</strong> giống bạn!`;
+                comparisonText.innerHTML = `Có <strong class="text-bmw-blue text-2xl">${myPercent}%</strong> người tham gia cũng thuộc nhóm The <strong>${myKey}</strong> giống bạn!`;
 
                 renderChart(labels, values, myKey);
 
@@ -777,7 +778,7 @@
         function handleCopyLink() {
             const text = `${state.finalResultType.shareText} #ThacoAuto #BMWVietnam\n${window.location.href}`;
             navigator.clipboard.writeText(text).then(() => {
-                $('form-status').textContent = '✅ Đã copy hashtags & link!';
+                $('form-status').textContent = '✅ Đã sao chép nội dung bài viết';
                 $('form-status').className = 'text-center text-sm mt-4 text-green-500';
             }).catch(() => alert("Copy thủ công: " + text));
         }
