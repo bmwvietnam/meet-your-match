@@ -759,7 +759,7 @@
         }
 
         function handleCopyLink() {
-            const text = `${state.finalResultType.shareText} #ThacoAuto #BMWVietnam`;
+            const text = `${state.finalResultType.shareText}`;
             navigator.clipboard.writeText(text).then(() => {
                 $('form-status').textContent = '✅ Đã sao chép nội dung bài viết';
                 $('form-status').className = 'text-center text-sm mt-4 text-green-500';
@@ -864,6 +864,7 @@
     </script>
 </body>
 </html>
+
 
 
 
