@@ -2,39 +2,38 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CHECK-IN | BMW MEET & DRIVE</title>
-    
-    <!-- Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-	<link rel="shortcut icon" type="image/x-icon" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEET YOUR MATCH – CHỌN MẪU BMW THỂ HIỆN CÁ TÍNH CỦA RIÊNG BẠN</title>
 
-    <!-- Tailwind Config -->
+    <meta property="og:title" content="MEET YOUR MATCH – CHỌN MẪU BMW THỂ HIỆN CÁ TÍNH CỦA RIÊNG BẠN" />
+    <meta property="og:description" content="Khám phá ngay mẫu BMW phù hợp với bạn." />
+    <meta property="og:image" content="https://meetyourmatch.event-bmw.vn/meetyourmatch.jpg" /> 
+    <meta property="og:url" content="https://meetyourmatch.event-bmw.vn" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/ico/favicon.ico">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['BMWTypeNext', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                        'heading': ['BMWTypeNext', 'sans-serif']
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Exo 2', 'sans-serif']
                     },
                     colors: {
-                        'bmw-blue': { 'DEFAULT': '#0066CC', 'light': '#0099FF', 'dark': '#004999' },
-                        'brand': { success: '#10b981', warning: '#f59e0b', danger: '#ef4444' }
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out forwards',
-                        'bounce-slow': 'bounce 2s infinite',
-                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        'bmw-blue': {
+                            'DEFAULT': '#0066CC',
+                            'light': '#0099FF',
+                            'dark': '#004999'
                         }
                     }
                 }
@@ -43,614 +42,841 @@
     </script>
 
     <style>
-        /* --- FONTS --- */
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Light.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
         @font-face { font-family: 'BMWTypeNext'; src: url('./VN_BMWTypeNextLatin-Regular.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-
-        body {
-            font-family: 'BMWTypeNext', sans-serif;
-            margin: 0; padding: 0;
-            background-color: #f3f4f6;
-            color: #1f2937;
-            overflow-x: hidden;
-        }
-
-        /* --- LOGIN SCREEN STYLES --- */
-        #login-view {
-            width: 100vw; height: 100vh;
-            background: url(https://drive.google.com/thumbnail?id=1ojbMioclkMOmqquMTxSgLbaq7KMoSx5M&sz=w1600) no-repeat center top;
-            background-size: cover;
-            position: fixed; top: 0; left: 0; z-index: 50;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-        
-        .login-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 1rem;
-            width: 90%; max-width: 400px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            margin-top: 20vh;
-        }
-
-        /* --- DASHBOARD STYLES --- */
-        #dashboard-view {
-            min-height: 100vh;
-            display: none; /* Ẩn mặc định */
-            padding: 0.5rem;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .main-container {
-            background: white;
-            width: 100%; max-width: 480px;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex; flex-direction: column;
-            min-height: 80vh;
-        }
-
-        /* --- UTILS --- */
-        .btn-bmw {
-            background-color: #0066CC; color: white;
-            font-weight: 700; padding: 0.75rem 1rem;
-            border-radius: 0.5rem; text-transform: uppercase;
-            width: 100%; transition: all 0.2s;
-            display: flex; justify-content: center; align-items: center; gap: 0.5rem;
-        }
-        .btn-bmw:active { transform: scale(0.98); }
-        .btn-bmw-outline {
-            border: 2px solid #0066CC; color: #0066CC;
-            background: transparent; font-weight: 700;
-            padding: 0.75rem 1rem; border-radius: 0.5rem;
-            width: 100%; text-transform: uppercase;
-            text-align: center;
-        }
-
-        /* Camera Fix */
-        #reader { width: 100%; height: 100%; border-radius: 1rem; overflow: hidden; background: #000; }
-        #reader video { object-fit: cover; width: 100% !important; height: 100% !important; }
-
-        /* --- NEW EFFECTS --- */
-        @keyframes border-pulse {
-            0% { border-color: #e5e7eb; box-shadow: 0 0 0 0 rgba(0, 102, 204, 0); }
-            50% { border-color: #0066CC; box-shadow: 0 0 15px 0 rgba(0, 102, 204, 0.3); }
-            100% { border-color: #e5e7eb; box-shadow: 0 0 0 0 rgba(0, 102, 204, 0); }
-        }
-        .survey-glow {
-            animation: border-pulse 2s infinite ease-in-out;
-            border-width: 2px;
-        }
     </style>
 
     <script>
-        var SCRIPT_URL = "https://script.google.com/macros/s/AKfycby07OBmW1s3SHR_CZu3iAFggOAvIEFegFiEgTOOF_V38Lb0cIyx2uGrOXi9tGODw2ef/exec";
-        
-        // Cấu hình Game
-        const zoneConfig = {
-            'talkshow': { name: 'KHÁM PHÁ DI SẢN', icon: 'fa-car', desc: 'Talkshow "50 Years of The 3"' },
-            'draw': { name: 'VẼ LÊN DẤU ẤN', icon: 'fa-pen', desc: 'Tự họa cá tính <br>Kiến tạo độc bản cùng BMW' },
-            'bimmie': { name: 'LƯU GIỮ KHOẢNH KHẮC', icon: 'fa-image', desc: 'Check-in cùng BIMMIE' },
-            'testdrive': { name: 'BỨT PHÁ GIỚI HẠN', icon: 'fa-gauge-high', desc: 'Hoàn thành thử thách <br>Lái thử/ Gymkhana' }
-        };
-        
-        let currentGameData = { talkshow: false, draw: false, bimmie: false, testdrive: false };
-        let currentPhone = "";
-        let isSurveyDone = false; // Trạng thái đã khảo sát hay chưa
-        let html5QrCode;
-
-        $(document).ready(function(){
-            // Kiểm tra LocalStorage
-            var savedPhone = localStorage.getItem('checkinsdt');
-            if(savedPhone && savedPhone != '') {
-                restoreSession(savedPhone);
-            }
-        });
-
-        // --- KHÔI PHỤC PHIÊN ---
-        function restoreSession(phone) {
-            console.log("Restoring session...");
-            
-            var mockData = [];
-            mockData[2] = localStorage.getItem('checkindanhxung') || "";
-            mockData[3] = localStorage.getItem('checkinhoten') || "";
-            mockData[7] = localStorage.getItem('checkindongxe') || "";
-            mockData[11] = localStorage.getItem('checkinstt') || "";
-            mockData[13] = localStorage.getItem('hoanthanh') || "";
-            mockData[17] = localStorage.getItem('checkinlan2') || "";
-            
-            // Lấy trạng thái survey từ cache
-            // Nếu trong cache lưu là "1" thì là đã xong.
-            let cachedSurveyStatus = localStorage.getItem('survey_status');
-            isSurveyDone = (cachedSurveyStatus === "1");
-
-            updateDashboardData(mockData, phone);
-            switchToDashboard();
-            initGameLogic(phone, mockData[3]);
-        }
-
-        // --- HÀM CHECK() GỌI SERVER ---
-        function check(){
-            var c = $('#txt-sdt').val().trim();
-            if (c != "") {
-                performCheck(c, true); // true = hiển thị loading modal
-            } else {
-                alert("Vui lòng nhập số điện thoại");
-            }
-        }
-
-        // Tách hàm check ra để dùng cho cả lúc Login và lúc Refresh
-        function performCheck(phone, showLoader) {
-            if(showLoader) showLoading(true, "Đang kiểm tra dữ liệu...");
-            
-            $.ajax({
-                url: SCRIPT_URL + "?id=" + phone, 
-                success: function(response){
-                    try {
-                        var jsonResponse = (typeof response === 'object') ? response : JSON.parse(response);
-
-                        if(jsonResponse.result === "error") {
-                            showLoading(false);
-                            alert(jsonResponse.message || "Không tìm thấy thông tin.");
-                            return;
-                        }
-
-                        var data = jsonResponse.userData;
-                        var serverGameProgress = jsonResponse.gameProgress;
-
-                        if(data && data.length > 0) {
-                            // Lưu Cache cơ bản
-                            localStorage.setItem('checkinsdt', phone);
-                            localStorage.setItem('checkindanhxung', data[2]);
-                            localStorage.setItem('checkinhoten', data[3]);
-                            localStorage.setItem('checkindongxe', data[7]);
-                            localStorage.setItem('checkinstt', data[11]);
-                            localStorage.setItem('hoanthanh', data[13]); // Cột 13 cũ (Hoàn thành checkin?)
-                            localStorage.setItem('checkinlan2', data[17] || ""); 
-
-                            // --- LOGIC QUAN TRỌNG: CHECK CỘT N (INDEX 13) ---
-                            // Theo yêu cầu: Cách B120 (index 11) 2 ô về bên phải => index 13
-                            // Dữ liệu mẫu: ["...", "B120", 1, 1, ...] -> Index 13 là số 1 thứ hai.
-                            let surveyValue = data[13]; 
-                            
-                            // Cập nhật biến toàn cục
-                            // Nếu giá trị là 1 hoặc "1" hoặc string có độ dài > 0 (tùy logic google form trả về)
-                            if (surveyValue == 1 || surveyValue == "1") {
-                                isSurveyDone = true;
-                                localStorage.setItem('survey_status', "1");
-                            } else {
-                                isSurveyDone = false;
-                                localStorage.setItem('survey_status', "0");
-                            }
-
-                            updateDashboardData(data, phone);
-                            showLoading(false);
-                            switchToDashboard();
-                            initGameLogic(phone, data[3], serverGameProgress); 
-
-                        } else {
-                            showLoading(false);
-                            alert("Dữ liệu không hợp lệ.");
-                        }
-                    } catch(e) {
-                        console.log("Error:", e);
-                        showLoading(false);
-                        alert("Lỗi xử lý dữ liệu.");
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['BMWTypeNext', 'sans-serif'], 
+                        'heading': ['BMWTypeNext', 'sans-serif'] 
+                    },
+                    colors: {
+                        'bmw-blue': { 'DEFAULT': '#0066CC', 'light': '#0099FF', 'dark': '#004999' }
                     }
-                }, 
-                error: function() {
-                    showLoading(false);
-                    alert("Lỗi kết nối.");
                 }
-            });
+            }
+        }
+    </script>
+
+    <style>
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes containerFadeIn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .container { animation: containerFadeIn 0.6s ease-out; }
+        .loader { width: 1.5rem; height: 1.5rem; border-width: 4px; border-color: white; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(30deg); } }
+
+        /* Modal Buttons */
+        .btn-modal-primary {
+            background-color: #0066CC; color: white; font-weight: 700; padding: 0.75rem 2rem; border-radius: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.875rem; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-modal-primary:hover { background-color: #0099FF; /* transform: scale(1.05); */ }
+        .btn-modal-secondary { background-color: #4B5563; color: white; font-weight: 700; padding: 0.75rem 2rem; border-radius: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.875rem; transition: all 0.3s; }
+        .btn-modal-secondary:hover { background-color: #6B7280; }
+        
+        /* Form Styles */
+        .form-input, .form-select { width: 100%; padding: 0.75rem 1rem; border: 1px solid #D1D5DB; border-radius: 0.5rem; font-size: 1rem; background-color: #F9FAFB; color: #111827; transition: all 0.3s; }
+        .form-input:focus, .form-select:focus { outline: none; border-color: #0066CC; background-color: #FFFFFF; box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.5); }
+        .aspect-w-16 { position: relative; padding-bottom: 56.25%; }
+        .aspect-w-16 > * { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        /* Video Control Styles */
+        .video-control-btn {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.18);
+            color: #ffffff65;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            z-index: 10;
+            margin: 4px;
+        }
+        .video-control-btn:hover {
+            background: rgba(0, 0, 0, 0.18);
+            transform: scale(1.0);
         }
         
-        // Hàm làm mới dữ liệu (khi người dùng quay lại từ Google Form)
-        function refreshUserData() {
-            let phone = localStorage.getItem('checkinsdt');
-            if(phone) {
-                // Hiển thị loading nhẹ hoặc đổi text nút
-                let btn = document.getElementById('btn-refresh-status');
-                if(btn) btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang cập nhật...';
-                
-                performCheck(phone, false); // false = không hiện loading full màn hình, để trải nghiệm mượt hơn
-            }
-        }
-
-        function updateDashboardData(data, phone) {
-            $('#display-name').text(data[3]); 
-            $('#display-title').text(data[2]); 
-            $('#display-phone').text(phone);
-            
-            let stt = data[11];
-            let hoanthanh = data[13]; // Cái này có thể trùng với cột Survey, cẩn thận logic hiển thị
-            let dongxe = data[7];
-
-            let statusHtml = '';
-            if (stt && stt != 'undefined') {
-                statusHtml = `<div class="bg-blue-50 text-bmw-blue p-4 rounded-lg text-center border border-blue-200 shadow-sm flex flex-col items-center">
-                                <div class="text-xs uppercase text-gray-500 mb-1">Số thứ tự lái thử</div>
-                                <div class="text-4xl font-bold mb-1">${stt}</div>
-                                <div class="text-xs text-gray-600 font-medium bg-white px-2 py-1 rounded border border-gray-100">${dongxe}</div>
-                              </div>`;
-            }
-            $('#user-status-area').html(statusHtml);
-        }
-
-        function switchToDashboard() {
-            $('#login-view').hide(); 
-            $('#dashboard-view').css('display', 'flex');
-        }
-
-        function checkout() {
-            if(confirm('Đăng xuất khỏi thiết bị này?')) {
-                localStorage.clear();
-                location.reload();
-            }
-        }
-
-        // --- XỬ LÝ GOOGLE FORM LINK ---
-        function openGoogleForm() {
-            var checkinstt = localStorage.getItem('checkinstt');
-            var name = localStorage.getItem('checkinhoten');
-            var phone = localStorage.getItem('checkinsdt');
-            var car = localStorage.getItem('checkindongxe');
-            
-            // Link mặc định
-            var surveyLink = "https://docs.google.com/forms/d/e/1FAIpQLSfWtuQOJ9S9JyRjiM34vanN_8nIz8oO5-53mu8r2yWFr_Z6qw/viewform?usp=pp_url&entry.1493832941=" + checkinstt +
-                "&entry.1645529580=" + name +
-                "&entry.16223579=" + phone;
-            
-            
-
-            // Mở tab mới
-            window.open(surveyLink, '_blank');
-        }
-
-        // --- GAME LOGIC ---
-        function initGameLogic(phone, name, serverData) {
-            currentPhone = phone;
-            
-            if (serverData) {
-                currentGameData = serverData;
-            } else {
-                const savedProgress = localStorage.getItem('game_progress_' + phone);
-                if (savedProgress) {
-                    currentGameData = JSON.parse(savedProgress);
-                }
-            }
-
-            saveGameProgress();
-            checkUrlForChallenge();
-            updateGameUI();
-        }
-
-        function syncProgressToSheet(challengeId) {
-            $.ajax({
-                url: SCRIPT_URL,
-                type: 'GET',
-                data: { action: 'update_game', id: currentPhone, challenge: challengeId },
-                success: function(response) { console.log("Synced"); }
-            });
-        }
-
-        function checkUrlForChallenge() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const challengeId = urlParams.get('challenge');
-            if (challengeId && zoneConfig[challengeId]) {
-                window.history.replaceState({}, document.title, window.location.pathname);
-                if (!currentGameData[challengeId]) {
-                    currentGameData[challengeId] = true;
-                    saveGameProgress();
-                    syncProgressToSheet(challengeId);
-                    
-                    setTimeout(() => {
-                        document.getElementById('success-message').innerHTML = `Bạn đã hoàn thành trạm <br><strong class="text-bmw-blue">${zoneConfig[challengeId].name}</strong>`;
-                        document.getElementById('success-modal').classList.remove('hidden');
-                        updateGameUI();
-                    }, 500); 
-                }
-            }
-        }
-
-        function saveGameProgress() {
-            localStorage.setItem('game_progress_' + currentPhone, JSON.stringify(currentGameData));
-            updateGameUI();
-        }
-
-        // --- UPDATE UI LOGIC (CHÍNH) ---
-        function updateGameUI() {
-            // 1. Render Challenges
-            const listContainer = document.getElementById('challenge-list');
-            listContainer.innerHTML = '';
-            let completedCount = 0;
-
-            Object.keys(currentGameData).forEach(key => {
-                const isDone = currentGameData[key];
-                if(isDone) completedCount++;
-                const config = zoneConfig[key];
-
-                const card = document.createElement('div');
-                card.className = `challenge-card flex items-center gap-4 p-4 rounded-xl border mb-3 transition-all duration-300 ${isDone ? 'bg-green-50 border-green-200' : 'bg-white border-gray-100 shadow-sm'}`;
-                card.innerHTML = `
-                    <div class="h-12 w-12 rounded-lg ${isDone ? 'bg-green-100 text-green-600' : 'bg-blue-50 text-bmw-blue'} flex items-center justify-center text-lg flex-shrink-0">
-                        <i class="fa-solid ${config.icon}"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-gray-900 text-sm font-heading uppercase">${config.name}</h4>
-                        <p class="text-xs ${isDone ? 'text-green-600 font-bold' : 'text-gray-500'} block mt-0.5">
-                            ${isDone ? 'Đã hoàn thành' : config.desc}
-                        </p>
-                    </div>
-                    <div>
-                        ${isDone 
-                            ? `<i class="fa-solid fa-circle-check text-green-500 text-xl"></i>`
-                            : `<button onclick="openScanner('${key}')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 px-3 rounded-lg text-xs flex items-center gap-1 transition-colors">
-                                <i class="fa-solid fa-camera"></i> SCAN
-                               </button>`
-                        }
-                    </div>
-                `;
-                listContainer.appendChild(card);
-            });
-
-            // 2. Progress Bar
-            const percent = (completedCount / 4) * 100;
-            document.getElementById('progress-bar').style.width = `${percent}%`;
-            document.getElementById('progress-text').innerText = `${completedCount}/4`;
-
-            // 3. LOGIC HIỂN THỊ NÚT KHẢO SÁT & QUÀ TẶNG
-            const surveyArea = document.getElementById('survey-area');
-            const btnRedeem = document.getElementById('btn-redeem');
-            const giftStatus = document.getElementById('gift-status-text');
-
-            // Reset
-            surveyArea.classList.add('hidden');
-            btnRedeem.disabled = true;
-            btnRedeem.className = "w-full py-3 rounded-lg font-bold text-sm uppercase tracking-wide transition-all bg-gray-700 text-gray-500 cursor-not-allowed";
-            btnRedeem.innerHTML = "CHƯA ĐỦ ĐIỀU KIỆN";
-            giftStatus.innerText = "Hoàn thành 4/4 trạm để nhận quà.";
-            giftStatus.className = "text-xs text-gray-400 mb-2";
-
-            // Nếu đã hoàn thành 4 trạm
-            if (completedCount === 4) {
-                // Hiện khu vực khảo sát
-                surveyArea.classList.remove('hidden');
-
-                if (isSurveyDone) {
-                    // TRƯỜNG HỢP: Đã khảo sát xong (isSurveyDone == true)
-                    
-                    // 1. Cập nhật UI khu vực khảo sát thành "Đã xong"
-                    $('#survey-status-msg').html('<span class="text-green-600 font-bold"><i class="fa-solid fa-check-circle"></i> Đã hoàn thành khảo sát</span>');
-                    $('#btn-open-survey').hide(); // Ẩn nút điền form
-                    $('#btn-refresh-status').hide(); // Ẩn nút refresh
-
-                    // 2. Mở khóa nút quà
-                    btnRedeem.disabled = false;
-                    btnRedeem.className = "w-full py-3 rounded-lg font-bold text-sm uppercase tracking-wide transition-all bg-yellow-500 hover:bg-yellow-400 text-gray-900 shadow-lg animate-pulse";
-                    btnRedeem.innerHTML = `<i class="fa-solid fa-gift mr-2"></i> NHẬN QUÀ NGAY`;
-                    giftStatus.innerText = "Bạn đã đủ điều kiện nhận quà!";
-                    giftStatus.className = "text-xs text-yellow-400 mb-2 font-bold";
-
-                } else {
-                    // TRƯỜNG HỢP: Chưa khảo sát (isSurveyDone == false)
-                    
-                    // 1. Hiện nút điền form và nút refresh
-                    $('#survey-status-msg').text('Vui lòng điền khảo sát để mở khóa quà tặng.');
-                    $('#btn-open-survey').show(); // Xóa class animate-bounce-slow
-                    $('#btn-refresh-status').show();
-                    
-                    // 2. Khóa nút quà
-                    giftStatus.innerText = "Chưa nhận được dữ liệu khảo sát.";
-                    giftStatus.className = "text-xs text-brand-warning mb-2 font-bold";
-                }
-            }
-        }
-
-        // --- SCANNER UI ---
-        function openScanner(targetZoneId) {
-            document.getElementById('scan-target-name').innerText = zoneConfig[targetZoneId].name;
-            document.getElementById('scan-modal').classList.remove('hidden');
-
-            if (!html5QrCode) { html5QrCode = new Html5Qrcode("reader"); }
-            html5QrCode.start({ facingMode: "environment" }, { fps: 10, aspectRatio: 1.0 },
-                (decodedText) => { handleScanSuccess(decodedText, targetZoneId); },
-                () => {}
-            ).catch(err => {
-                alert("Lỗi Camera: " + err);
-                closeModal('scan-modal');
-            });
-        }
-
-        function stopScanner() {
-            if (html5QrCode && html5QrCode.isScanning) {
-                html5QrCode.stop().then(() => closeModal('scan-modal')).catch(() => closeModal('scan-modal'));
-            } else { closeModal('scan-modal'); }
-        }
-
-        function handleScanSuccess(decodedText, targetZoneId) {
-            stopScanner();
-            let scannedId = null;
-            try {
-                const url = new URL(decodedText);
-                scannedId = url.searchParams.get('challenge');
-            } catch (e) { console.log("QR không phải URL"); }
-            if (!scannedId && zoneConfig[decodedText]) { scannedId = decodedText; }
-
-            if (scannedId === targetZoneId) {
-                currentGameData[targetZoneId] = true;
-                saveGameProgress();
-                syncProgressToSheet(targetZoneId);
-                document.getElementById('success-message').innerHTML = `Bạn đã hoàn thành trạm <br><strong class="text-bmw-blue">${zoneConfig[targetZoneId].name}</strong>`;
-                document.getElementById('success-modal').classList.remove('hidden');
-            } else {
-                alert(`QR Sai! Vui lòng tìm đúng trạm "${zoneConfig[targetZoneId].name}"`);
-            }
-        }
-
-        // Helpers
-        function showLoading(show, text="Đang xử lý...") {
-            const el = document.getElementById('loading-overlay');
-            if(show) { document.getElementById('loading-text').innerText = text; el.classList.remove('hidden'); }
-            else { el.classList.add('hidden'); }
-        }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-        function showRedeemInstruction() { document.getElementById('redeem-modal').classList.remove('hidden'); }
-
-    </script>
+        /* --- THÊM MỚI --- */
+.aspect-9-16 { position: relative; padding-bottom: 177.77%; }
+.aspect-9-16 > * { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
 </head>
-<body>
-
-    <!-- === VIEW 1: LOGIN === -->
-    <div id="login-view">
-        <div class="login-card flex flex-col items-center animate-fade-in">
-            <h1 class="text-2xl font-bold text-white mb-1 font-heading uppercase text-center">Check-in</h1>
-            <p class="text-gray-300 text-sm mb-6 text-center">Nhập số điện thoại đã đăng ký</p>
-            
-            <input type="tel" id="txt-sdt" class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:border-bmw-blue focus:ring-2 focus:ring-bmw-blue/20 transition-all text-center text-lg font-bold text-gray-800 mb-4" placeholder="Số điện thoại...">
-            
-            <button onclick="check()" class="btn-bmw shadow-lg shadow-blue-500/30">
-                BẮT ĐẦU <i class="fa-solid fa-arrow-right ml-1"></i>
-            </button>
+<body class="bg-gray-100 text-gray-800 font-sans font-light min-h-screen p-4 md:p-8 flex items-center justify-center">
+    
+    <div class="container max-w-3xl w-full mx-auto bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl shadow-2xl overflow-hidden">
+        
+        <div class="header p-4 text-center border-b border-gray-200">
+            <img src="https://d35wmn7bemzfye.cloudfront.net/016cb055e264cba17dedfeab958d53e1983cc9af/1747652511/images/logo.png" alt="Logo BMW" class="h-16 md:h-12 w-auto mx-auto mb-6" onerror="this.style.display='none'">
+            <h1 class="text-2xl font-bold text-zinc-900 mb-0 font-heading uppercase tracking-wide">MEET YOUR MATCH</h1>
+            <p class="text-lg text-gray-600">Chọn mẫu BMW thể hiện cá tính</p>
         </div>
-        <div class="absolute bottom-4 text-white/50 text-xs">© BMW Vietnam 2025</div>
-    </div>
 
-    <!-- === VIEW 2: DASHBOARD === -->
-    <div id="dashboard-view">
-        <div class="main-container relative">
-            
-            <!-- Header -->
-            <div class="bg-white p-5 border-b border-gray-100 flex justify-between items-center sticky top-0 z-10">
-                <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 rounded-full bg-bmw-blue text-white flex items-center justify-center font-bold text-lg shadow-md">
-                        <i class="fa-solid fa-user"></i>
+        <div class="content p-4 md:p-10">
+            <div id="welcomeSection" class="section active">
+                <div class="text-center">
+                    <div class="relative w-full aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto bg-black">
+                        <video id="introVideo" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
+                            <source src="https://www.bmw-motorcycles.vn/content/dam/bmwmotorradnsc/marketVN_IMPORTER/common/videos/meet-your-match/bmwmeetyourmatch.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ thẻ video.
+                        </video>
+                        <button onclick="toggleSound()" class="video-control-btn" title="Bật/Tắt âm thanh">
+                            <i id="soundIcon" class="fa-solid fa-volume-xmark"></i>
+                        </button>
                     </div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider" id="display-title">Quý khách</p>
-                        <h2 class="text-sm font-bold text-gray-900 leading-tight uppercase" id="display-name">Loading...</h2>
-                        <span class="text-xs text-bmw-blue font-mono" id="display-phone">...</span>
+                    
+                    <div class="text-sm text-gray-700 mb-6 max-w-2xl mx-auto">
+                        BMW là biểu tượng của sự hoàn hảo, kết hợp giữa công nghệ tiên tiến và thiết kế đẳng cấp. 
+                        Nhưng hoàn hảo nhất là chiếc xe thể hiện được phong cách sống riêng và cá tính độc đáo của bạn. 
+                        <br><br>
+                        <strong class="text-zinc-900">Hãy trả lời 6 câu hỏi để khám phá mẫu BMW được sinh ra dành cho bạn!
+                        <br><br>
+                        MEET THE PASSION. <br>DRIVE THE DIFFERENCE.
+                        </strong>
                     </div>
                 </div>
-                <button onclick="checkout()" class="h-8 w-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                <div class="form-group mb-6">
+                    <label for="customerName" class="block text-sm font-medium text-gray-600 mb-2">Tên của bạn là gì?</label>
+                    <input type="text" id="customerName" placeholder="Nhập tên của bạn..." maxlength="50" class="w-full p-4 bg-white border border-gray-300 rounded-lg text-zinc-900 focus:ring-bmw-blue focus:border-bmw-blue transition placeholder:text-gray-400">
+                </div>
+
+                <button class="btn w-full p-4 bg-bmw-blue hover:bg-bmw-light text-white font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2 group" id="startBtn" onclick="startQuiz()">
+                    Bắt đầu ngay! <i class="fa-solid fa-arrow-right w-5 h-4 transition-transform group-hover:translate-x-1"></i>
                 </button>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-2 custom-scrollbar">
-                
-                <!-- Status Check-in Area -->
-                <div id="user-status-area" class="mb-6"></div>
-
-                <!-- Progress Bar -->
-                <div class="mb-6">
-                    <div class="flex justify-between items-end mb-2">
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Tiến độ</h3>
-                        <span id="progress-text" class="text-lg font-bold text-bmw-blue">0/4</span>
-                    </div>
-                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                        <div id="progress-bar" class="bg-bmw-blue h-2 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
-                    </div>
+            <div id="quizSection" class="section">
+                <div class="progress-bar bg-gray-200 h-2 rounded-full mb-8 overflow-hidden">
+                    <div class="progress-fill bg-bmw-blue h-2 rounded-full transition-all duration-500" id="progressBar"></div>
                 </div>
 
-                <!-- Challenges List -->
-                <div id="challenge-list" class="mb-6"></div>
+                <div id="questionsContainer"></div>
 
-                <!-- Survey Section (UPDATED UI) -->
-                <div id="survey-area" class="mb-6 hidden animate-fade-in">
-                    <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-md survey-glow relative overflow-hidden">
-                        <h3 class="text-sm font-bold text-bmw-blue mb-2 uppercase border-b border-gray-100 pb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-star text-yellow-500"></i> Bước cuối cùng
-                        </h3>
-                        <p id="survey-status-msg" class="text-xs text-gray-500 mb-4">Vui lòng điền khảo sát để mở khóa quà tặng.</p>
-                        
-                        <!-- Nút mở Google Form -->
-                        <button id="btn-open-survey" onclick="openGoogleForm()" class="btn-bmw-outline w-full mb-3 bg-blue-50/50 hover:bg-blue-50 border-bmw-blue text-bmw-blue">
-                            <i class="fa-regular fa-file-lines mr-2"></i> Mở phiếu đánh giá
-                        </button>
+                <button class="btn w-full p-4 bg-bmw-blue hover:bg-bmw-light text-white font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" id="nextBtn" onclick="nextQuestion()" disabled>
+                    Tiếp theo
+                </button>
+                <button class="btn btn-secondary w-full p-4 mt-4 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300" onclick="previousQuestion()">
+                    Quay lại
+                </button>
+            </div>
 
-                        <!-- Nút làm mới trạng thái -->
-                        <button id="btn-refresh-status" onclick="refreshUserData()" class="w-full py-2 text-gray-400 hover:text-bmw-blue font-bold rounded-lg text-[10px] flex items-center justify-center gap-1 transition-colors uppercase tracking-wide">
-                            <i class="fa-solid fa-rotate"></i> Cập nhật trạng thái
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Gift Card -->
-                <div id="gift-card" class="bg-gray-900 text-white p-5 rounded-xl text-center relative overflow-hidden shadow-xl mb-4">
-                    <div class="relative z-10">
-                        <div class="mx-auto h-12 w-12 bg-white/10 rounded-full flex items-center justify-center mb-2 text-yellow-400 border border-white/20">
-                            <i class="fa-solid fa-gift text-xl"></i>
+            <div id="resultSection" class="section">
+                <div class="result-card bg-white border border-bmw-blue/30 md:p-8 rounded-xl text-center shadow-lg mb-8">
+                    <div class="mb-2 rounded-t-lg overflow-hidden shadow-md max-w-2xl mx-auto">
+                        <div class="bg-gray-200">
+                            <a href="#open-share-modal-btn"><img id="resultImage" src="" alt="Kết quả" class="w-full h-full object-cover"></a>
                         </div>
-                        <h3 class="text-sm font-bold mb-1 uppercase tracking-wide">Quà tặng đặc biệt</h3>
-                        <p id="gift-status-text" class="text-xs text-gray-400 mb-4">Hoàn thành 4/4 thử thách để nhận quà.</p>
-                        <button id="btn-redeem" onclick="showRedeemInstruction()" disabled 
-                            class="w-full py-3 rounded-lg font-bold text-xs uppercase tracking-wide transition-all bg-gray-800 text-gray-500 cursor-not-allowed border border-gray-700">
-                            Chưa đủ điều kiện
-                        </button>
                     </div>
-                    <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" 
-                         style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 10px 10px;"></div>
+                    
+                    <div class="text-bmw-blue mb-4 font-heading" id="resultSubtitle">
+                        </div>
+
+                    <div class="result-desc text-sm/6 text-gray-700 p-6 pt-0 max-w-2xl mx-auto whitespace-pre-line" id="resultDesc" style="text-align:left;"></div>
                 </div>
 
+                <div id="stats-container" class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8 hidden">
+                    <h3 class="text-center text-xl font-bold text-zinc-900 mb-2 font-heading">Cộng đồng BMW</h3>
+                    
+                    <p id="comparison-text" class="text-center text-gray-600 mb-6">
+                        Đang tải dữ liệu cộng đồng...
+                    </p>
+
+                    <div class="relative h-64 w-full max-w-md mx-auto">
+                        <canvas id="personalityChart"></canvas>
+                    </div>
+                    <div id="js-legend" class="grid grid-cols-2 gap-y-3 gap-x-4 mt-6 w-full max-w-xs mx-auto">
+                    </div>
+                </div>
+
+                <div class="personality-traits grid grid-cols-1 md:grid-cols-3 gap-4 my-8 hidden" id="personalityTraits"></div>
+
+                <div class="car-details bg-gray-50 rounded-lg border border-gray-200 p-6 mb-8 hidden">
+                    <h3 class="text-xl font-bold text-zinc-900 mb-6 font-heading">Chi tiết dòng xe của bạn</h3>
+                    <div id="carDetails"></div>
+                </div>
+
+                <div class="text-center my-8">
+                    <p class="text-xl font-semibold text-zinc-900 mb-4">🎁 Chia sẻ kết quả để có cơ hội nhận quà tặng đặc biệt từ BMW</p>
+                </div>
+
+                <button id="open-share-modal-btn" class="btn w-full p-4 bg-bmw-blue hover:bg-bmw-light text-white font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-share-nodes w-5 h-5 flex items-center"></i> Chia sẻ ngay
+                </button>
+
+                <button class="btn btn-secondary w-full p-4 mt-4 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-lg uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2" onclick="restartQuiz()">
+                    Chơi lại <i class="fa-solid fa-rotate-right w-5 h-5 flex items-center"></i>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- === MODALS === -->
-    
-    <!-- Loading Modal -->
-    <div id="loading-overlay" class="hidden fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/80 backdrop-blur-md">
-        <div class="w-10 h-10 border-4 border-bmw-blue border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p id="loading-text" class="text-bmw-blue font-bold text-sm tracking-wider animate-pulse">ĐANG XỬ LÝ...</p>
-    </div>
-
-    <!-- Scanner Modal -->
-    <div id="scan-modal" class="hidden fixed inset-0 z-[70] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in">
-        <div class="w-full max-w-md text-center relative flex flex-col h-full justify-center">
-            <button onclick="stopScanner()" class="absolute top-6 right-0 text-white bg-white/20 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/30 z-50 transition-colors">
-                <i class="fa-solid fa-xmark text-xl"></i>
+    <div id="share-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-sm hidden opacity-0 font-sans">
+        <div id="share-modal-content" class="bg-white border border-gray-200 text-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 relative">
+            
+            <button id="close-modal-btn" class="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-800 transition-colors">
+                <i class="fa-solid fa-xmark w-8 h-8"></i>
             </button>
-            <h3 class="text-xl font-bold text-white mb-2 font-heading">QUÉT MÃ QR</h3>
-            <p class="text-gray-300 text-sm mb-6">Trạm: <span id="scan-target-name" class="text-bmw-white font-bold bg-white/10 px-2 py-0.5 rounded">...</span></p>
-            <div class="relative w-full aspect-square bg-black rounded-2xl overflow-hidden border-2 border-gray-600 shadow-2xl">
-                <div id="reader"></div>
+
+            <div id="registration-content" class="p-6 md:p-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900 heading-font">MEET YOUR MATCH</h2>
+                <p class="text-center text-gray-600 mb-8">Bạn có muốn trải nghiệm trực tiếp mẫu xe yêu thích trong sự kiện<br>BMW MEET & DRIVE<br>ngày 06-07/12/2025 tại Hà Nội?</p>
+
+                <div id="drive-confirm-buttons" class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <button id="register-yes-btn" class="btn-modal-primary flex-1">
+                        Chia sẻ & Đăng ký lái thử
+                    </button>
+                    <button id="register-no-btn" class="btn-modal-secondary flex-1">Chỉ chia sẻ</button>
+                </div>
+
+                <form id="register-form" class="hidden space-y-4">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Đăng ký lái thử</h3>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Họ và tên *</label><input type="text" id="full-name" name="full-name" required class="form-input"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email *</label><input type="email" id="email" name="email" required class="form-input"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại *</label><input type="tel" id="phone" name="phone" required class="form-input"></div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Mẫu xe muốn lái thử *</label>
+                        <select id="car-model" name="car-model" class="form-select appearance-none"><option value="">Đang tải...</option></select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Khung giờ lái thử *</label>
+                        <select id="test-drive-time" name="test-drive-time" class="form-select appearance-none" required>
+                            <option value="">Chọn khung giờ...</option>
+                            <option value="08:00 - 10:00 (Thứ Bảy)">08:00 - 10:00 (Thứ Bảy)</option>
+                            <option value="10:00 - 12:00 (Thứ Bảy)">10:00 - 12:00 (Thứ Bảy)</option>
+                            <option value="13:00 - 15:00 (Thứ Bảy)">13:00 - 15:00 (Thứ Bảy)</option>
+                            <option value="15:00 - 17:00 (Thứ Bảy)">15:00 - 17:00 (Thứ Bảy)</option>
+                            <option value="08:00 - 10:00 (Chủ Nhật)">08:00 - 10:00 (Chủ Nhật)</option>
+                            <option value="10:00 - 12:00 (Chủ Nhật)">10:00 - 12:00 (Chủ Nhật)</option>
+                            <option value="13:00 - 15:00 (Chủ Nhật)">13:00 - 15:00 (Chủ Nhật)</option>
+                            <option value="15:00 - 17:00 (Chủ Nhật)">15:00 - 17:00 (Chủ Nhật)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center">
+                        <label class="flex items-top text-sm text-gray-700"><input type="checkbox" required class="mr-2 h-4 w-4 text-bmw-blue"> Tôi xác nhận đã có bằng lái xe trên 1 năm từ hạng B trở lên</label>
+                    </div>
+                </form>
+
+                <div id="social-share-section" class="hidden">
+                    <hr class="my-8 border-gray-200">
+                    <p class="text-center font-semibold text-gray-700 mb-4">Bước 1: Sao chép nội dung bài viết và chia sẻ trên trang Facebook cá nhân ở chế độ công khai</p>
+                    <button onclick="handleCopyLink()" class="btn-modal-secondary w-full flex items-center justify-center gap-2 py-3 mb-4 bg-gray-600 hover:bg-gray-700">
+                        <i class="fa-solid fa-copy"></i> Sao chép nội dung
+                    </button>
+                    <p id="form-status" class="text-center text-sm mt-4 text-gray-500"></p>
+                    <div class="text-center mt-4 mb-4">
+                        <!-- TÌM VÀ SỬA NÚT NÀY -->
+                        <button id="open-guide-btn" class="text-sm text-bmw-blue hover:text-bmw-light font-semibold transition-colors flex items-center justify-center w-full">
+                            Xem hướng dẫn chia sẻ
+                        </button>
+                    </div>
+
+                    <p class="text-center font-semibold text-gray-700 mb-4 mt-8">Bước 2: Nhập link bài viết bạn đã chia sẻ</p>
+                    <input type="url" id="share-link" placeholder="https://facebook.com/your-post-link" class="form-input mb-6">
+
+                    <div id="prediction-step-container" class="hidden">
+                        <p class="text-center font-semibold text-gray-700 mb-4">Bước 3: Dự đoán số người cùng tham gia minigame với bạn</p>
+                        <input type="number" id="prediction-count" placeholder="Nhập số dự đoán của bạn" class="form-input text-center text-lg font-bold text-bmw-blue">
+                    </div>
+
+                    <button id="complete-btn" class="btn-modal-primary w-full mt-8 text-lg">Hoàn thành <span id="loading-spinner" class="loader ml-2 hidden"></span></button>
+                    
+                </div>
+            </div>
+
+            <div id="success-content" class="hidden text-center flex flex-col items-center justify-center h-full min-h-[400px]">
+                
+                <h3 class="text-2xl md:text-3xl font-bold text-bmw-black mt-6 mb-4 font-heading">CẢM ƠN BẠN.</h3>
+                <p class="text-gray-600 mb-8 max-w-md mx-auto px-6">Chúng tôi đã ghi nhận thông tin của bạn. Hãy theo dõi fanpage BMW Vietnam để cập nhật kết quả minigame. <br><br>Đừng quên BMW MEET & DRIVE sẽ diễn ra tại Hà Nội từ 06-07/12/2025. Hãy đến để có cơ hội trải nghiệm trực tiếp mẫu xe BMW bạn yêu thích.</p>
+                
+                <div class="mb-6 mx-auto">
+                     <img src="https://meetyourmatch.event-bmw.vn/meetanddrive.jpg" alt="BMW MEET & DRIVE" class="w-full h-full object-contain shadow-lg">
+                </div>
+                <a href="https://meetanddrive.event-bmw.vn" target="_blank" class="btn-modal-primary mb-6 md:w-auto min-w-[200px] shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                    Tìm hiểu thêm
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TÌM div id="guide-modal" VÀ THAY THẾ BẰNG ĐOẠN NÀY -->
+    <div id="guide-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black bg-opacity-90 backdrop-blur-sm hidden opacity-0 font-sans">
+        <!-- Đã đổi max-w-2xl thành max-w-sm để khung nhỏ giống điện thoại -->
+        <div id="guide-modal-content" class="bg-gray-900 rounded-2xl shadow-2xl w-full max-w-sm transform scale-95 transition-all duration-300 border border-gray-700 overflow-hidden">
+            <div class="relative">
+                
+                <div class="absolute top-0 left-0 p-4 z-20 flex justify-between items-start">
+                    <button id="close-guide-btn" class="text-white bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <!-- Khung chứa video tỉ lệ 9:16 -->
+                <div class="aspect-9-16 bg-black">
+                    <iframe id="guide-video-iframe" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/_EdB4stxyhU?rel=0&controls=1&autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div id="success-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm p-6 animate-fade-in">
-        <div class="bg-white rounded-xl p-8 w-full max-w-sm text-center shadow-2xl">
-            <div class="mx-auto h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <i class="fa-solid fa-check text-3xl text-green-600"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2 font-heading">TUYỆT VỜI!</h3>
-            <p id="success-message" class="text-gray-600 mb-6 text-sm">Thử thách hoàn thành.</p>
-            <button onclick="closeModal('success-modal')" class="btn-bmw bg-green-600 hover:bg-green-700">TIẾP TỤC</button>
-        </div>
-    </div>
+    <script>
+        // --- VIDEO SOUND CONTROL SCRIPT ---
+        function toggleSound() {
+            const video = document.getElementById('introVideo');
+            const icon = document.getElementById('soundIcon');
+            
+            if (video.muted) {
+                video.muted = false;
+                icon.classList.remove('fa-volume-xmark');
+                icon.classList.add('fa-volume-high');
+            } else {
+                video.muted = true;
+                icon.classList.remove('fa-volume-high');
+                icon.classList.add('fa-volume-xmark');
+            }
+        }
 
-    <!-- Redeem Modal -->
-    <div id="redeem-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm p-6 animate-fade-in">
-        <div class="bg-white rounded-xl p-8 w-full max-w-sm text-center shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-bmw-blue to-blue-400"></div>
-            <div class="mx-auto h-16 w-16 bg-yellow-50 rounded-full flex items-center justify-center mb-4 animate-bounce">
-                <i class="fa-solid fa-trophy text-3xl text-yellow-500"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">CHÚC MỪNG!</h3>
-            <p class="text-gray-600 text-sm mb-6 leading-relaxed">
-                Bạn đã hoàn thành xuất sắc.<br>
-                <span class="text-bmw-blue font-bold border-bmw-blue">Vui lòng mang màn hình này</span>
-                <br>đến quầy check-out để nhận quà.
-            </p>
-            <button onclick="closeModal('redeem-modal')" class="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-lg text-sm">ĐÓNG</button>
-        </div>
-    </div>
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpcI8VVSDsIUw6TgFtaDXT77lfuEJEmhmo04R3mE8Uv5YSioI2HqrOmI4U-63P9pI11g/exec'; 
 
+        // --- Dữ liệu & Logic Game ---
+        const questions = [
+            { id: 1, text: "Cuối tuần lý tưởng của bạn là gì?", options: [{ text: "Lên đường khám phá những cung đèo mới 🏔️", type: "Traveler" }, { text: "Cà phê sang, trải nghiệm công nghệ ☕✨", type: "Visionary" }, { text: "Ra đường đua, nghẹt thở với tốc độ 🏁🔥", type: "Performer" }, { text: "Dạo phố, linh hoạt trong từng cung đường 🚗✨", type: "Icon" }] },
+            { id: 2, text: "Tính cách nào mô tả bạn rõ nhất?", options: [{ text: "Tự do, thích xê dịch", type: "Traveler" }, { text: "Sáng tạo, cấp tiến, yêu đổi mới", type: "Visionary" }, { text: "Mạnh mẽ, quyết đoán trong mọi việc", type: "Performer" }, { text: "Thanh lịch, tinh tế, hướng đến sự cân bằng", type: "Icon" }] },
+            { id: 3, text: "Playlist bạn nghe khi lái xe?", options: [{ text: "Indie/Chill – Thư thái 🌿", type: "Traveler" }, { text: "Electronic/Pop – Luôn cập nhật ✨", type: "Visionary" }, { text: "Rock/Hip-hop – Adrenaline 🔥", type: "Performer" }, { text: "Pop/Acoustic – Phù hợp mọi khoảnh khắc 🎧", type: "Icon" }] },
+            { id: 4, text: "Khi bạn chọn xe, điều gì quan trọng nhất?", options: [{ text: "Không gian – Tiện nghi cho mọi người", type: "Traveler" }, { text: "Công nghệ – Thông minh – Tương lai", type: "Visionary" }, { text: "Hiệu năng – Tốc độ – Cảm giác", type: "Performer" }, { text: "Đa dụng – Phù hợp mọi tình huống", type: "Icon" }] },
+            { id: 5, text: "Phong cách lái xe của bạn như thế nào?", options: [{ text: "Cẩn thận, hành trình nào cũng chắc chắn", type: "Traveler" }, { text: "Tỉnh táo, mỗi thao tác là một cảm giác mới", type: "Visionary" }, { text: "Tự tin, luôn sẵn sàng tăng tốc", type: "Performer" }, { text: "Linh hoạt, thích cảm giác kiểm soát trong phố", type: "Icon" }] },
+            { id: 6, text: "Một câu mô tả lý tưởng sống của bạn", options: [{ text: "Đi để trải nghiệm nhiều hơn 🌍", type: "Traveler" }, { text: "Tương lai là ngay lúc này 🔋", type: "Visionary" }, { text: "Sống hết mình với đam mê 🔥", type: "Performer" }, { text: "Phong cách là dấu ấn cá nhân ✨", type: "Icon" }] }
+        ];
+
+        // --- UPDATE: Cập nhật cấu trúc dữ liệu để tách tên Series và Models ---
+        const carTypes = {
+            Traveler: {
+                icon: '<i class="fa-solid fa-mountain-sun"></i>', 
+                name: "THE TRAVELER",
+                resultImage: "https://meetyourmatch.event-bmw.vn/result/thetraveler_result.jpg",
+                // UPDATE: Tách thành 2 dòng riêng
+                series: "BMW X Series",
+                models: "The X3, The X4, The X5, The X6",
+                slogan: "Gia đình - Trải nghiệm - Drive every road",
+                description: 'The Traveler là những người làm chủ cuộc hành trình, mang tinh thần tự do, bản lĩnh và không ngại thách thức trên những cung đường mới. Họ tin rằng, những câu chuyện đáng giá nhất luôn nằm ngoài giới hạn của bản đồ. Với The Traveler, thế giới là một sân chơi, và họ định nghĩa lại "khám phá" theo cách của riêng mình. \n\nSự hiện diện của BMW X Series được đánh dấu bằng sức mạnh vượt trội, công nghệ dẫn động thông minh xDrive, cùng thiết kế nội thất sang trọng, rộng rãi. Các mẫu xe X Series được chế tạo để chinh phục mọi địa hình, mang đến sự an toàn và thoải mái tối đa trên mọi hành trình, dù là đô thị hay xa lộ.',
+                traits: [{ icon: '<i class="fa-solid fa-earth-americas"></i>', name: "Khám phá", desc: "Luôn sẵn sàng cho chuyến đi mới" }, { icon: '<i class="fa-solid fa-users-line"></i>', name: "Gia đình", desc: "Ưu tiên sự thoải mái và an toàn" }, { icon: '<i class="fa-solid fa-road"></i>', name: "Linh hoạt", desc: "Chinh phục mọi địa hình" } ],
+                features: [{ label: "Dòng xe", value: "BMW X3 / X4 / X5 / X6" }, { label: "Đặc điểm", value: "SUV đa dụng, rộng rãi" }, { label: "Phù hợp", value: "Gia đình, du lịch xa" }, { label: "Công nghệ", value: "xDrive, Comfort Access" }],
+                id: "traveler",
+                carsList: ["BMW X3", "BMW X5", "BMW X7"],
+                shareText: 'The Traveler là những người làm chủ cuộc hành trình, mang tinh thần tự do, bản lĩnh và không ngại thách thức trên những cung đường mới. Họ tin rằng, những câu chuyện đáng giá nhất luôn nằm ngoài giới hạn của bản đồ. Với The Traveler, thế giới là một sân chơi, và họ định nghĩa lại "khám phá" theo cách của riêng mình. \n\nSự hiện diện của BMW X Series được đánh dấu bằng sức mạnh vượt trội, công nghệ dẫn động thông minh xDrive, cùng thiết kế nội thất sang trọng, rộng rãi. Các mẫu xe X Series được chế tạo để chinh phục mọi địa hình, mang đến sự an toàn và thoải mái tối đa trên mọi hành trình, dù là đô thị hay xa lộ. \n\nI am The Traveler – Người kiến tạo những hành trình không giới hạn. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/the-traveler \n\n#BMWVietnam #MeetYourMatch #TheTraveler #TheX3 #TheX4 #TheX5 #TheX6 #SheerDrivingPleasure \n'
+            },
+            Visionary: {
+                icon: '<i class="fa-solid fa-microchip"></i>', 
+                name: "THE VISIONARY",
+                resultImage: "https://meetyourmatch.event-bmw.vn/result/thevisionary_result.jpg",
+                // UPDATE
+                series: "BMW i Series",
+                models: "The iX3, The i4, The i7",
+                slogan: "Công nghệ - Tương lai - Drive the future",
+                description: "The Visionary không chỉ theo kịp xu hướng, họ là người tạo ra chúng. Với tầm nhìn đột phá, họ luôn nhìn thấy và đầu tư vào một tương lai thông minh, bền vững và khác biệt. Sự lựa chọn của The Visionary là một cam kết với sự tiến hóa của phong cách sống cao cấp, lấy công nghệ làm kim chỉ nam. \n\nBMW i Series đại diện cho sự giao thoa hoàn hảo giữa thiết kế tiên phong, công nghệ điện hóa đỉnh cao và khả năng di chuyển bền vững. Với buồng lái kỹ thuật số tiên tiến, hệ thống truyền động không phát thải và vật liệu nội thất được tái chế, i Series định hình lại chuẩn mực của phương tiện hạng sang trong kỷ nguyên mới.",
+                traits: [{ icon: '<i class="fa-solid fa-rocket"></i>', name: "Tiên phong", desc: "Dẫn đầu xu hướng công nghệ" }, { icon: '<i class="fa-solid fa-leaf"></i>', name: "Bền vững", desc: "Quan tâm môi trường" }, { icon: '<i class="fa-solid fa-robot"></i>', name: "Thông minh", desc: "Yêu công nghệ AI" } ],
+                features: [{ label: "Dòng xe", value: "BMW i4 / i7 / iX" }, { label: "Đặc điểm", value: "Xe điện, công nghệ tương lai" }, { label: "Phù hợp", value: "Doanh nhân, tech lover" }, { label: "Công nghệ", value: "100% điện, AI Assistant" }],
+                id: "visionary",
+                carsList: ["BMW i4", "BMW i7", "BMW iX"],
+                shareText: "The Visionary không chỉ theo kịp xu hướng, họ là người tạo ra chúng. Với tầm nhìn đột phá, họ luôn nhìn thấy và đầu tư vào một tương lai thông minh, bền vững và khác biệt. Sự lựa chọn của The Visionary là một cam kết với sự tiến hóa của phong cách sống cao cấp, lấy công nghệ làm kim chỉ nam. \n\nBMW i Series đại diện cho sự giao thoa hoàn hảo giữa thiết kế tiên phong, công nghệ điện hóa đỉnh cao và khả năng di chuyển bền vững. Với buồng lái kỹ thuật số tiên tiến, hệ thống truyền động không phát thải và vật liệu nội thất được tái chế, i Series định hình lại chuẩn mực của phương tiện hạng sang trong kỷ nguyên mới. \n\nI am The Visionary – Người tiên phong định hình kỷ nguyên mới. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/thevisionary \n\n#BMWVietnam #MeetYourMatch #TheVisionary #TheiX3 #Thei4 #Thei7 #SheerDrivingPleasure \n"
+            },
+            Performer: {
+                icon: '<i class="fa-solid fa-flag-checkered"></i>', 
+                name: "THE PERFORMER",
+                resultImage: "https://meetyourmatch.event-bmw.vn/result/theperformer_result.jpg",
+                // UPDATE
+                series: "BMW M Series",
+                models: "The M3, The M4",
+                slogan: "Tốc độ - Thách thức - Drive the performance",
+                description: "Đam mê của The Performer là Sheer Driving Pleasure. Họ sống vì cảm giác tốc độ thuần túy, sự chính xác tuyệt đối, và khả năng làm chủ mọi giới hạn. Với The Performer, mỗi khoảnh khắc sau tay lái là một thử thách cần phải vượt qua, một màn trình diễn của tinh hoa kỹ thuật. \n\nBMW M Series được chế tạo bằng các vật liệu và công nghệ tinh chỉnh từ đường đua. Từ sức mạnh của động cơ hiệu suất cao đến hệ thống khung gầm được thiết kế để truyền tải trọn vẹn cảm xúc lái, mỗi chiếc M Series là một cỗ máy hiệu năng bùng nổ.",
+                traits: [{ icon: '<i class="fa-solid fa-bolt-lightning"></i>', name: "Mạnh mẽ", desc: "Động cơ hiệu suất cao" }, { icon: '<i class="fa-solid fa-bullseye"></i>', name: "Quyết đoán", desc: "Luôn dẫn đầu" }, { icon: '<i class="fa-solid fa-fire"></i>', name: "Đam mê", desc: "Yêu tốc độ và cảm giác lái" } ],
+                features: [{ label: "Dòng xe", value: "BMW M3 / M4 / M5" }, { label: "Đặc điểm", value: "Hiệu suất cao, thể thao" }, { label: "Phù hợp", value: "Người yêu tốc độ" }, { label: "Công nghệ", value: "M Sport, Track Mode" }],
+                id: "performer",
+                carsList: ["BMW M3", "BMW M4", "BMW M5"],
+                shareText: "Đam mê của The Performer là Sheer Driving Pleasure. Họ sống vì cảm giác tốc độ thuần túy, sự chính xác tuyệt đối, và khả năng làm chủ mọi giới hạn. Với The Performer, mỗi khoảnh khắc sau tay lái là một thử thách cần phải vượt qua, một màn trình diễn của tinh hoa kỹ thuật. \n\nBMW M Series được chế tạo bằng các vật liệu và công nghệ tinh chỉnh từ đường đua. Từ sức mạnh của động cơ hiệu suất cao đến hệ thống khung gầm được thiết kế để truyền tải trọn vẹn cảm xúc lái, mỗi chiếc M Series là một cỗ máy hiệu năng bùng nổ. \n\nI am The Performer – Người tìm kiếm những giới hạn mới. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/the-performer \n\n#BMWVietnam #MeetYourMatch #ThePerformer #TheM3 #TheM4 #BMWMPerformance #UltimateDrivingMachine #SheerDrivingPleasure \n"
+            },
+            Icon: {
+                icon: '<i class="fa-solid fa-gem"></i>', 
+                name: "THE ICON",
+                resultImage: "https://meetyourmatch.event-bmw.vn/result/theicon_result.jpg",
+                // UPDATE
+                series: "BMW Series",
+                models: "The 3, The 5",
+                slogan: "Lịch lãm - Khẳng định BMW - Meet the legacy",
+                description: "The Icon là hiện thân của sự tinh tế, đẳng cấp không cần phô trương, và vị thế được khẳng định qua những thành tựu. Thành công của họ được xây dựng dựa trên sự cân bằng giữa hiệu suất công việc và sự tận hưởng cuộc sống. The Icon không theo đuổi xu hướng, họ là chuẩn mực, là di sản mà người khác hướng tới. \n\nBMW 3 Series và 5 Series là những mẫu xe khởi đầu đam mê Sheer Driving Pleasure của nhiều thế hệ, được biết đến với khả năng lái năng động đặc trưng và sự cân bằng hoàn hảo giữa tính thể thao và tiện nghi cao cấp. Thiết kế thanh lịch, cùng công nghệ tiên tiến, đã định vị 3 Series và 5 Series là biểu tượng của thế hệ sedan hiện đại, kế thừa một di sản vĩ đại.",
+                traits: [{ icon: '<i class="fa-solid fa-user-tie"></i>', name: "Thanh lịch", desc: "Phong cách chuyên nghiệp" }, { icon: '<i class="fa-solid fa-star"></i>', name: "Đẳng cấp", desc: "Luôn hoàn hảo trong mọi chi tiết" }, { icon: '<i class="fa-solid fa-award"></i>', name: "Tinh tế", desc: "Biết đánh giá giá trị" } ],
+                features: [{ label: "Dòng xe", value: "BMW 3 / 5 / 7 Series" }, { label: "Đặc điểm", value: "Sedan cao cấp, thanh lịch" }, { label: "Phù hợp", value: "Doanh nhân, lãnh đạo" }, { label: "Công nghệ", value: "Luxury Line, Executive" }],
+                id: "icon",
+                carsList: ["BMW 3 Series", "BMW 5 Series", "BMW 7 Series"],
+                shareText: "The Icon là hiện thân của sự tinh tế, đẳng cấp không cần phô trương, và vị thế được khẳng định qua những thành tựu. Thành công của họ được xây dựng dựa trên sự cân bằng giữa hiệu suất công việc và sự tận hưởng cuộc sống. The Icon không theo đuổi xu hướng, họ là chuẩn mực, là di sản mà người khác hướng tới.\n\nBMW 3 Series và 5 Series là những mẫu xe khởi đầu đam mê Sheer Driving Pleasure của nhiều thế hệ, được biết đến với khả năng lái năng động đặc trưng và sự cân bằng hoàn hảo giữa tính thể thao và tiện nghi cao cấp. Thiết kế thanh lịch, cùng công nghệ tiên tiến, đã định vị 3 Series và 5 Series là biểu tượng của thế hệ sedan hiện đại, kế thừa một di sản vĩ đại.\n\nI am The Icon – Người tiếp nối di sản, tạo nên huyền thoại. Còn bạn thì sao? \n\nKhám phá ngay: https://meetyourmatch.event-bmw.vn/theicon \n\n#BMWVietnam #MeetYourMatch #TheIcon #The3 #The5 #SheerDrivingPleasure \n"
+            }
+        };
+
+        const ALL_CAR_MODELS = ["BMW 3 Series", "BMW 4 Series", "BMW 5 Series", "BMW 7 Series", "BMW X3", "BMW X4", "BMW X5", "BMW X6", "BMW X7", "BMW i4"];
+        let currentQuestion = 0, answers = [], customerName = "", state = { finalResultType: null, isFormVisible: false }, myChart = null;
+        const $ = (id) => document.getElementById(id);
+
+        // --- TÍNH NĂNG MỚI: RESTORE TIẾN ĐỘ ---
+        document.addEventListener('DOMContentLoaded', () => {
+            restoreProgress();
+        });
+
+        function saveProgress(phase) {
+            const progressData = {
+                customerName: customerName,
+                answers: answers,
+                currentQuestion: currentQuestion,
+                phase: phase, // 'quiz' or 'result'
+                // Nếu phase là result, lưu thêm ID kết quả
+                resultId: state.finalResultType ? state.finalResultType.id : null
+            };
+            localStorage.setItem('bmw_quiz_progress', JSON.stringify(progressData));
+        }
+
+        function restoreProgress() {
+            const saved = localStorage.getItem('bmw_quiz_progress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                customerName = data.customerName;
+                answers = data.answers;
+                currentQuestion = data.currentQuestion;
+                
+                // Khôi phục tên vào ô input (để nếu user back lại vẫn thấy)
+                if($('customerName')) $('customerName').value = customerName;
+
+                if (data.phase === 'quiz') {
+                    // Nếu đang chơi dở -> Chuyển ngay đến câu hỏi
+                    $('welcomeSection').classList.remove('active');
+                    $('quizSection').classList.add('active');
+                    
+                    // Tắt tiếng video nền nếu có
+                    const video = $('introVideo');
+                    if (video && !video.muted) toggleSound();
+
+                    renderQuestion();
+                    updateProgress();
+                } else if (data.phase === 'result' && data.resultId) {
+                    // Nếu đã có kết quả -> Chuyển ngay đến trang kết quả
+                    // Lưu ý: Cần giả lập lại tính toán để biến state.finalResultType có dữ liệu
+                    $('welcomeSection').classList.remove('active');
+                    
+                    // Tái tạo lại biến kết quả
+                    const resultKey = Object.keys(carTypes).find(key => carTypes[key].id === data.resultId);
+                    if(resultKey) {
+                        // Gọi showResult nhưng thêm cờ 'isRestoring' để không gửi lại API
+                        showResult(true, carTypes[resultKey]);
+                    }
+                }
+            }
+        }
+        // ----------------------------------------
+
+        function startQuiz() {
+            customerName = $('customerName').value.trim();
+            if (!customerName) {
+                $('startBtn').textContent = 'Vui lòng nhập tên của bạn!';
+                $('startBtn').classList.replace('bg-bmw-blue', 'bg-red-600');
+                setTimeout(() => {
+                    $('startBtn').innerHTML = 'Bắt đầu ngay! <i class="fa-solid fa-arrow-right ml-2"></i>';
+                    $('startBtn').classList.replace('bg-red-600', 'bg-bmw-blue');
+                }, 2000);
+                return;
+            }
+
+            const video = $('introVideo');
+            if (video && !video.muted) {
+                toggleSound();
+            }
+
+            $('welcomeSection').classList.remove('active');
+            $('quizSection').classList.add('active');
+            
+            // SAVE STATE
+            saveProgress('quiz');
+            
+            renderQuestion(); updateProgress();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            $('questionsContainer').innerHTML = `
+                <div class="text-sm font-semibold text-bmw-blue mb-2">Câu ${currentQuestion + 1} / ${questions.length}</div>
+                <div class="text-base font-bold text-zinc-900 mb-4 font-heading">${q.text}</div>
+                <div class="flex flex-col gap-4 mb-4">
+                    ${q.options.map((opt, i) => `
+                        <div class="option flex items-center p-3 bg-white rounded-lg border-2 border-gray-300 cursor-pointer hover:border-bmw-blue hover:bg-gray-50 transition-all" onclick="selectOption(${i}, this)">
+                            <div class="option-label w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">${String.fromCharCode(65 + i)}</div>
+                            <div class="ml-4 flex-1 text-sm text-zinc-900">${opt.text}</div>
+                        </div>`).join('')}
+                </div>`;
+            if (answers[currentQuestion] !== undefined) selectOption(answers[currentQuestion], document.querySelectorAll('.option')[answers[currentQuestion]]);
+        }
+
+        function selectOption(idx, el) {
+            answers[currentQuestion] = idx;
+            document.querySelectorAll('.option').forEach(o => {
+                o.classList.remove('border-bmw-blue', 'bg-blue-50');
+                o.querySelector('.option-label').classList.replace('bg-bmw-blue', 'bg-gray-200');
+                o.querySelector('.option-label').classList.replace('text-white', 'text-gray-600');
+            });
+            el.classList.add('border-bmw-blue', 'bg-blue-50');
+            el.querySelector('.option-label').classList.replace('bg-gray-200', 'bg-bmw-blue');
+            el.querySelector('.option-label').classList.replace('text-gray-600', 'text-white');
+            $('nextBtn').disabled = false;
+            
+            // SAVE STATE
+            saveProgress('quiz');
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++; renderQuestion(); updateProgress();
+                $('nextBtn').disabled = true; window.scrollTo(0, 0);
+                // SAVE STATE
+                saveProgress('quiz');
+            } else {
+                showResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) { 
+                currentQuestion--; renderQuestion(); updateProgress(); 
+                // SAVE STATE
+                saveProgress('quiz');
+            }
+        }
+
+        function updateProgress() {
+            const pct = ((currentQuestion + 1) / questions.length) * 100;
+            $('progressBar').style.width = pct + '%';
+            $('nextBtn').innerHTML = currentQuestion === questions.length - 1 ? 'Xem kết quả! <i class="fa-solid fa-flag-checkered ml-2"></i>' : 'Tiếp theo';
+        }
+
+        function showResult(isRestoring = false, restoredResult = null) {
+            let result;
+
+            if (restoredResult) {
+                // Trường hợp restore từ localStorage
+                result = restoredResult;
+            } else {
+                // Trường hợp tính toán bình thường
+                const counts = { 'Icon': 0, 'Traveler': 0, 'Visionary': 0, 'Performer': 0 };
+                answers.forEach((a, i) => {
+                    const type = questions[i].options[a].type;
+                    if (counts[type] !== undefined) counts[type]++;
+                });
+
+                let maxScore = 0;
+                Object.values(counts).forEach(c => { if (c > maxScore) maxScore = c; });
+
+                const priorityOrder = ['Icon', 'Traveler', 'Visionary', 'Performer'];
+                let finalType = null;
+                for (const type of priorityOrder) {
+                    if (counts[type] === maxScore) { finalType = type; break; }
+                }
+                if (!finalType) finalType = 'Icon';
+                result = carTypes[finalType];
+            }
+
+            state.finalResultType = result;
+
+            // SAVE STATE: Lưu trạng thái result
+            if (!isRestoring) saveProgress('result');
+
+            // --- HIỂN THỊ UI ---
+            $('quizSection').classList.remove('active');
+            $('resultSection').classList.add('active');
+            
+            $('resultImage').src = result.resultImage;
+            
+            // UPDATE: Render tên xe tách dòng (To trên, nhỏ dưới)
+            $('resultSubtitle').innerHTML = `
+                <div class="text-xl md:text-4xl font-bold tracking-wider mb-1">${result.series}</div>
+                <div class="text-lg md:text-2xl font-light text-bmw-blue-dark">${result.models}</div>
+            `;
+            
+            $('resultDesc').textContent = result.description;
+
+            $('personalityTraits').innerHTML = result.traits.map(t => `
+                <div class="bg-white shadow-sm border border-gray-200 p-6 rounded-lg text-center hover:shadow-lg transition-all">
+                    <div class="text-4xl mb-3 text-bmw-blue">${t.icon}</div>
+                    <div class="text-lg font-semibold text-zinc-900">${t.name}</div>
+                    <div class="text-sm text-gray-600">${t.desc}</div>
+                </div>`).join('');
+
+            $('carDetails').innerHTML = result.features.map(f => `
+                <div class="flex flex-col items-start text-left py-3 border-b border-gray-200 last:border-b-0">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${f.label}</span>
+                    <span class="font-heading font-bold text-zinc-900 text-lg md:text-xl leading-tight">${f.value}</span>
+                </div>`).join('');
+
+            // Chỉ lưu kết quả lên server nếu KHÔNG PHẢI là đang restore
+            if (!isRestoring) {
+                saveGameResult(customerName, result.id);
+            }
+            
+            loadGlobalStats(result.id);
+            updateCarModelDropdown();
+            
+            // Scroll to top
+            if (!isRestoring) window.scrollTo(0, 0);
+        }
+
+        // --- FIX CORS: THAY ĐỔI HEADER THÀNH TEXT/PLAIN ---
+        function saveGameResult(name, resultId) {
+            fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({
+                    actionType: "GameResult",
+                    customerName: name,
+                    result: resultId
+                })
+            }).catch(console.error);
+        }
+
+        // --- HÀM VẼ BIỂU ĐỒ (GET REQUEST) ---
+        async function loadGlobalStats(myResultId) {
+            const statsContainer = $('stats-container');
+            const comparisonText = $('comparison-text');
+            statsContainer.classList.remove('hidden');
+            
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+
+                if (!response.ok) throw new Error("Network response was not ok");
+                
+                const data = await response.json();
+                
+                if (!data.counts) throw new Error("No data");
+
+                const labels = ['Icon', 'Traveler', 'Visionary', 'Performer'];
+                const values = labels.map(l => data.counts[l] || 0);
+                
+                const myKey = myResultId.charAt(0).toUpperCase() + myResultId.slice(1);
+                const myCount = (data.counts[myKey] || 0); 
+                const total = data.total; 
+                
+                let myPercent = total > 0 ? Math.round((myCount / total) * 100) : 0;
+
+                comparisonText.innerHTML = `Có <strong class="text-bmw-blue text-2xl">${myPercent}%</strong> người tham gia cũng thuộc nhóm The <strong>${myKey}</strong> giống bạn!`;
+
+                renderChart(labels, values, myKey);
+
+            } catch (e) {
+                console.error("Lỗi tải thống kê:", e);
+                comparisonText.textContent = "Bạn là người đầu tiên khám phá cá tính này hôm nay!";
+                renderChart(['Icon', 'Traveler', 'Visionary', 'Performer'], [1,1,1,1], myResultId);
+            }
+        }
+
+        function renderChart(labels, dataValues, highlightKey) {
+            const ctx = document.getElementById('personalityChart').getContext('2d');
+            const colors = ['#004484', '#e72b18', '#d7d7d7', '#006fb7']; // The Icon, The Traveler, The Visionary, The Performer
+            
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: dataValues,
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            display: false 
+                        },
+                        tooltip: { 
+                            callbacks: { 
+                                label: function(context) {
+                                    let value = context.parsed || 0;
+                                    let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    let pct = total > 0 ? Math.round((value / total) * 100) : 0;
+                                    return ` ${context.label}: ${pct}%`;
+                                }
+                            }
+                        },
+                        datalabels: {
+                            color: '#ffffff',
+                            font: { weight: 'bold', size: 14, family: 'BMWTypeNext' },
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => { sum += data; });
+                                let percentage = sum > 0 ? (value * 100 / sum).toFixed(0) + "%" : "0%";
+                                return percentage;
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+
+            const legendContainer = document.getElementById('js-legend');
+            legendContainer.innerHTML = labels.map((label, index) => {
+                return `
+                    <div class="flex items-center justify-left space-x-2">
+                        <span class="w-3 h-3 rounded-full flex-shrink-0" style="background-color: ${colors[index]}"></span>
+                        <span class="text-sm text-gray-600 font-medium truncate">The ${label}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- MODAL & FORM SUBMIT ---
+        function updateCarModelDropdown() {
+            const select = $('car-model'); select.innerHTML = '';
+            ALL_CAR_MODELS.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; select.appendChild(o); });
+        }
+
+        function toggleRegisterForm(show) {
+            state.isFormVisible = show;
+            $('drive-confirm-buttons').classList.add('hidden');
+            $('social-share-section').classList.remove('hidden');
+            $('prediction-step-container').classList.remove('hidden'); 
+
+            if(show) { 
+                $('register-form').classList.remove('hidden'); 
+                $('full-name').value = customerName; 
+            } else { 
+                $('register-form').classList.add('hidden'); 
+            }
+        }
+
+        function handleCopyLink() {
+            const text = `${state.finalResultType.shareText}`;
+            navigator.clipboard.writeText(text).then(() => {
+                $('form-status').textContent = '✅ Đã sao chép nội dung bài viết';
+                $('form-status').className = 'text-center text-sm mt-4 text-green-500';
+            }).catch(() => alert("Copy thủ công: " + text));
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            const shareLink = $('share-link').value;
+            if (!shareLink) { alert("Vui lòng nhập link chia sẻ!"); return; }
+
+            const prediction = $('prediction-count').value;
+            if(!prediction) { alert("Vui lòng nhập con số dự đoán!"); return; }
+
+            let formData = {
+                actionType: "Registration",
+                customerName: customerName,
+                result: state.finalResultType.id,
+                "share-link": shareLink,
+                "prediction-count": prediction,
+                is_registered: state.isFormVisible ? "Yes" : "No"
+            };
+
+            if (state.isFormVisible) {
+                const regForm = $('register-form');
+                if (!regForm.checkValidity()) { regForm.reportValidity(); return; }
+                
+                formData["full-name"] = $('full-name').value;
+                formData.phone = $('phone').value;
+                formData.email = $('email').value;
+                formData["car-model"] = $('car-model').value;
+                formData["test-drive-time"] = $('test-drive-time').value;
+            }
+
+            $('loading-spinner').classList.remove('hidden');
+            $('complete-btn').disabled = true;
+            $('form-status').textContent = 'Đang gửi thông tin...';
+            $('form-status').className = 'text-center text-sm mt-4 text-gray-500';
+
+            try {
+                await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(formData)
+                });
+
+                $('registration-content').classList.add('hidden');
+                $('success-content').classList.remove('hidden');
+                
+                // Sau khi hoàn thành đăng ký, có thể xóa bộ nhớ tạm để tránh việc user F5 lại ra trang này
+                // localStorage.removeItem('bmw_quiz_progress'); // Tùy chọn: Nếu muốn F5 vẫn ở trang success thì comment dòng này lại
+
+            } catch (error) {
+                console.error('Lỗi:', error);
+                $('form-status').textContent = 'Có lỗi xảy ra. Vui lòng thử lại.';
+                $('form-status').className = 'text-center text-sm mt-4 text-red-500';
+            } finally {
+                $('loading-spinner').classList.add('hidden');
+                $('complete-btn').disabled = false;
+            }
+        }
+
+        // Event Listeners
+        $('open-share-modal-btn').onclick = () => { 
+            $('share-modal').classList.remove('hidden'); 
+            setTimeout(() => { $('share-modal').classList.add('opacity-100'); $('share-modal-content').classList.add('scale-100'); }, 10); 
+            
+            $('drive-confirm-buttons').classList.remove('hidden');
+            $('social-share-section').classList.add('hidden');
+            $('register-form').classList.add('hidden');
+            $('success-content').classList.add('hidden'); 
+            $('registration-content').classList.remove('hidden'); 
+            
+            state.isFormVisible = false;
+            $('form-status').textContent = '';
+        };
+        $('close-modal-btn').onclick = closeModal;
+        function closeModal() { 
+            $('share-modal').classList.remove('opacity-100'); 
+            $('share-modal-content').classList.remove('scale-100'); 
+            setTimeout(() => $('share-modal').classList.add('hidden'), 300); 
+        }
+
+        $('register-yes-btn').onclick = () => toggleRegisterForm(true);
+        $('register-no-btn').onclick = () => toggleRegisterForm(false);
+        $('complete-btn').onclick = handleSubmit;
+        
+        $('open-guide-btn').onclick = () => { $('guide-modal').classList.remove('hidden'); setTimeout(() => $('guide-modal').classList.add('opacity-100'), 10); };
+        $('close-guide-btn').onclick = () => { $('guide-modal').classList.remove('opacity-100'); setTimeout(() => $('guide-modal').classList.add('hidden'), 300); };
+
+        function restartQuiz() {
+            // XÓA TRẠNG THÁI LƯU TRỮ
+            localStorage.removeItem('bmw_quiz_progress');
+            
+            currentQuestion = 0; answers = []; customerName = ""; state.finalResultType = null;
+            $('resultSection').classList.remove('active'); $('welcomeSection').classList.add('active');
+            $('customerName').value = ''; $('nextBtn').disabled = true; $('nextBtn').textContent = 'Tiếp theo';
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
